@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;400&family=Josefin+Sans:wght@200&family=Oswald:wght@200;500&family=Outfit:wght@200&family=Roboto+Mono:wght@100;400&display=swap");
+body {
+    background: rgb(40, 40, 40);
+    color: white;
+    font-family: "Be Vietnam Pro", sans-serif;
+    display: grid;
+    height: 98vh;
+}
+section {
+    margin: auto;
+}
+
+/* stolen online */
+button {
+    margin: 0.4em 0;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 3rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all 0.5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-36:hover {
+    box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+    transition-duration: 0.1s;
+}
+.purp {
+    background-image: linear-gradient(92.88deg, #455eb5 9.16%, #5643cc 43.89%, #673fd7 64.72%);
+}
+.red {
+    background-image: linear-gradient(92.88deg, #b5457d 9.16%, #cc4343 43.89%, #d73f3f 64.72%);
+}
+.green {
+    background-image: linear-gradient(92.88deg, #45b558 9.16%, #43cc61 43.89%, #7cd73f 64.72%);
+}
+
+textarea,
+input[type] {
+    display: block;
+    margin: 0;
+    padding: var(--inputPaddingV) var(--inputPaddingH);
+    color: black;
+    width: 40%;
+    padding: 1rem;
+    /* margin: .5rem 0; */
+    font-family: inherit;
+    font-size: var(--inputFontSize);
+    font-weight: inherit;
+    line-height: var(--inputLineHeight);
+    border: none;
+    border-radius: 0.4rem;
+    transition: box-shadow var(--transitionDuration);
+}
+@media only screen and (max-width: 600px) {
+    textarea,
+    input[type] {
+        width: 90%;
+    }
+}
+
+textarea,
+input[type]::placeholder {
+    color: #b0bec5;
+}
+
+textarea,
+input[type]:focus {
+    outline: none;
+    box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
+}
+
+.todoItems{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: .5rem;
+}
