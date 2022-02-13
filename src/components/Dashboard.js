@@ -10,11 +10,12 @@ import { collection, query, onSnapshot, doc, updateDoc, deleteDoc, QuerySnapshot
 export default function Dashboard() {
   const { currentUser, logout } = useAuth()
   const [title, setTitle] = useState('')
+  const [list, setList] = useState(currentUser.email)
   const [todo, setTodo] = useState([])
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const q = query(collection(db, 'todo'))
+  const fetchList = (cltion) => {
+    const q = query(collection(db, cltion))
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray = []
       querySnapshot.forEach((doc) => {
@@ -24,17 +25,32 @@ export default function Dashboard() {
       // console.log('todo in useefetct: ', todo)
     })
     return () => unsub()
+
+  }
+
+  useEffect(() => {
+    fetchList(list)
   }, [])
 
 
   const handleEdit = async (todo, title) => {
-    await updateDoc(doc(db, 'todo', todo.id), { title: title })
+    await updateDoc(doc(db, list, todo.id), { title: title })
   }
   const toggleComplete = async (todo) => {
-    await updateDoc(doc(db, 'todo', todo.id), { completed: !todo.completed })
+    await updateDoc(doc(db, list, todo.id), { completed: !todo.completed })
   }
   const handleDelete = async (id) => {
-    await deleteDoc(doc(db, 'todo', id))
+    await deleteDoc(doc(db, list, id))
+  }
+
+  const handleSwitchList = async (event) => {
+    event.preventDefault()
+
+    if (list !== '') {
+      console.log('list:', list)
+      fetchList(list)
+    }
+    else console.log('no list selected')
   }
 
   const handleSubmit = async (event) => {
@@ -44,7 +60,7 @@ export default function Dashboard() {
 
       try {
         console.log('sending data')
-        await db.collection("todo").add({
+        await db.collection(list).add({
           title,
           complete: false
         })
@@ -88,8 +104,18 @@ export default function Dashboard() {
         ))
       }
 
+      <br /><br />
+      <form onSubmit={handleSwitchList}>
+        <label>Change List: </label>
+        <input
+          type='text'
+          value={list}
+          onChange={(e) => setList(e.target.value)}
+        ></input>
+        <button type="submit" className='green'>Change</button>
+      </form>
 
-
+      <br /><br />
       <button className="red" onClick={handleLogout}>Log out</button>
       <br />
       <Link to="/update-profile"><button className="green">Update Profile</button></Link>
