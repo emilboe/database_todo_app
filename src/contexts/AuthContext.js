@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth } from '../firebase.js'
+import { auth, db } from '../firebase.js'
 
 const AuthContext = React.createContext();
 
@@ -15,6 +15,9 @@ export function AuthProvider({ children }) {
   async function signup(email, password) {
     try {
       const res = await auth.createUserWithEmailAndPassword(email, password)
+      db.collection(email + '_collabs').add({
+        collabName: email
+      })
       return {
         error: false,
         message: res
@@ -121,6 +124,47 @@ export function AuthProvider({ children }) {
     }
   }
 
+  function updateUsername(username) {
+
+
+    try {
+      const res = currentUser.updateProfile({
+        displayName: username
+      })
+      console.log('username update successful')
+      return {
+        error: false,
+        message: res
+      }
+    }
+    catch (err) {
+      return {
+        error: true,
+        message: err
+      }
+    }
+  }
+
+  function updatePhotoURL(photoURL) {
+
+    try {
+      const res = currentUser.updateProfile({
+        photoURL: photoURL
+      })
+      console.log('photourl update successful')
+      return {
+        error: false,
+        message: res
+      }
+    }
+    catch (err) {
+      return {
+        error: true,
+        message: err
+      }
+    }
+  }
+
 
   const value = {
     currentUser,
@@ -129,7 +173,9 @@ export function AuthProvider({ children }) {
     logout,
     resetPassword,
     updateEmail,
-    updatePassword
+    updatePassword,
+    updateUsername,
+    updatePhotoURL
   }
   return (
     <AuthContext.Provider value={value}>

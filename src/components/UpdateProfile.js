@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
 
 export default function UpdateProfile() {
-    const emailRef = useRef()
+    const { updateEmail, updatePassword, currentUser, logout, updateUsername, updatePhotoURL } = useAuth()
+    const emailRef = useRef(currentUser.email)
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { updateEmail, updatePassword, currentUser, logout } = useAuth()
+    const displayNameRef = useRef(currentUser.displayName)
+    const photoURLRef = useRef(currentUser.photoURL)
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
@@ -31,9 +33,17 @@ export default function UpdateProfile() {
 
         if (emailRef.current.value !== currentUser.email) {
             promises.push(updateEmail(emailRef.current.value))
-        } else if (passwordRef.current.value) {
+        } 
+        else if (displayNameRef.current.value !== currentUser.displayName) {
+            promises.push(updateUsername(displayNameRef.current.value))
+        } 
+        else if (photoURLRef.current.value !== currentUser.photoURL) {
+            promises.push(updatePhotoURL(photoURLRef.current.value))
+        } 
+        else if (passwordRef.current.value) {
             promises.push(updatePassword(passwordRef.current.value))
-        } else {
+        } 
+        else {
             setLoading(false)
             setMessage("You haven't changed anything!")
             return
@@ -58,6 +68,27 @@ export default function UpdateProfile() {
             <form onSubmit={handleSubmit}>
                 <div>{currentUser && "You're currently logged in with : " + currentUser.email}</div>
                 <br />
+                <div>
+                    <label>DisplayName</label><br />
+                    <input
+                        type="text"
+                        ref={displayNameRef}
+                        required
+                        autoComplete="off"
+                        defaultValue={currentUser.displayName}  />
+                </div>
+                <div>
+                    <br />
+                    <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? 'profile picture' : 'no pfp url'} className="pfp" />
+                    <br />
+                    <label>PhotoURL</label><br />
+                    <input
+                        type="text"
+                        ref={photoURLRef}
+                        required
+                        autoComplete="off"
+                        defaultValue={currentUser.photoURL}  />
+                </div>
                 <div>
                     <label>Email</label><br />
                     <input

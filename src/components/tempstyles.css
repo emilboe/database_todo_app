@@ -82,9 +82,18 @@ input[type]:focus {
     box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
 }
 
-.todoItems{
+.todoItems {
     display: flex;
     align-items: center;
     justify-content: start;
-    gap: .5rem;
+    gap: 0.5rem;
+}
+
+.addInput {
+    display: flex;
+    gap: .6rem;
+}
+.pfp{
+    height: 35px;
+    border-radius: 50%;
 }
