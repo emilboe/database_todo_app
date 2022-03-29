@@ -14,11 +14,12 @@ export default function Dashboard() {
   const [list, setList] = useState(currentUser.email)
   const [todo, setTodo] = useState([])
   const [collaborators, setCollaborators] = useState([])
+  const [group, setGroup] = useState('personal')
   const collabArray = Object.values(collaborators)
   const navigate = useNavigate()
 
   const fetchList = (col) => {
-    const q = query(collection(db, col))
+    const q = query(db.collection('groups').doc(currentUser.uid + group).collection('list'))
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray = []
       querySnapshot.forEach((doc) => {
@@ -31,7 +32,7 @@ export default function Dashboard() {
 
   }
   const fetchCollabs = (col) => {
-    const q = query(collection(db, col))
+    const q = query(db.collection('groups').doc(currentUser.uid + group).collection('collaborators'))
     const unsub = onSnapshot(q, (querySnapshot) => {
 
       let collabArray = []
@@ -78,7 +79,7 @@ export default function Dashboard() {
 
       try {
         console.log('sending data')
-        await db.collection(list).add({
+        await db.collection('groups').doc(currentUser.uid + group).collection('list').add({
           title,
           complete: false
         })
@@ -92,25 +93,36 @@ export default function Dashboard() {
     else console.log('alert or maybe disable button first?')
   }
 
-  const handleSubmitCollab = async (event) => {
+  const handleSubmitInvitation = async (event) => {
     event.preventDefault()
     console.log('array and name:', collaborators, collabName)
     let found = false
-    if (!collabName) console.log('no input...')
+    if (!collabName) {
+      alert('no input...')
+      return
+    }
+
     collaborators.forEach(el => {
       if (el.collabName === collabName) {
-        console.log('found!')
+        alert('user is already a collaborator!')
         found = true
+        return
       }
     })
     if (!found) {
       try {
         let length = collaborators.length
         console.log('sending data')
-        await db.collection(list + '_collabs').add({
-          collabName
+        await db.collection('invitations').doc(collabName).collection('invites').add({
+          collabName,
+          groupID: currentUser.uid + group,
+          invitedBy: currentUser.displayName,
+          groupName: group
         }, { merge: true })
-        console.log('data sent')
+        // await db.collection('groups').doc(currentUser.uid + group).collection('collaborators').add({
+        //   collabName
+        // }, { merge: true })
+        alert('user invited!')
       }
       catch (err) {
         console.log(err)
@@ -118,9 +130,10 @@ export default function Dashboard() {
       setTitle('')
       return
     }
-    else alert('user is already a collaborator')
 
   }
+
+  
 
   function handleLogout() {
     logout()
@@ -131,20 +144,21 @@ export default function Dashboard() {
     <>
       <h1>Dashboard</h1>
       <p>Hello, {currentUser.displayName}</p>
+      <p>Current group: {group}</p>
       <div className='collaborators'>
         Collaborators:
-        {/* {console.log(collabArray)} */}
-        {console.log('collaborators', collaborators)}
+        {/* {console.log('uid:', currentUser.uid)} */}
+        {/* {console.log('collaborators', collaborators)} */}
         {
           collaborators.map(user => (
             <p>{user.collabName}</p>
           ))
         }
         <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
-        <form onSubmit={handleSubmitCollab} className="addInput">
+        <form onSubmit={handleSubmitInvitation} className="addInput">
           <input
-            type='text'
-            placeholder='add collaborator'
+            type='email'
+            placeholder='Invite collaborator'
             value={collabName}
             onChange={(e) => setCollabName(e.target.value)}
           ></input>
@@ -191,7 +205,7 @@ export default function Dashboard() {
       <br /><br />
       <button className="red" onClick={handleLogout}>Log out</button>
       <br />
-      <Link to="/update-profile"><button className="green">Update Profile</button></Link>
+      <Link to="/profile"><button className="green">Profile</button></Link>
     </>
   )
 

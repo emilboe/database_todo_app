@@ -6,6 +6,7 @@ import Login from './Login';
 import Lost from './Lost';
 import PrivateRoute from './PrivateRoute';
 import ForgotPW from './ForgotPW';
+import Profile from './Profile';
 import UpdateProfile from './UpdateProfile';
 import './tempstyles.css'
 
@@ -23,6 +24,11 @@ function App() {
             <Route exact path='/update-profile' element={
               <PrivateRoute>
                 <UpdateProfile />
+              </PrivateRoute>
+            } />
+            <Route exact path='/profile' element={
+              <PrivateRoute>
+                <Profile />
               </PrivateRoute>
             } />
 
