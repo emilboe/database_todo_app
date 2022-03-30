@@ -7,7 +7,7 @@ import { collection, query, onSnapshot, doc, updateDoc, deleteDoc, QuerySnapshot
 
 
 
-export default function Dashboard() {
+export default function Fridge() {
   const { currentUser, logout } = useAuth()
   const [title, setTitle] = useState('')
   const [collabName, setCollabName] = useState('')
@@ -19,7 +19,7 @@ export default function Dashboard() {
   const navigate = useNavigate()
 
   const fetchList = (col) => {
-    const q = query(db.collection('groups').doc(currentUser.uid + group).collection('list'))
+    const q = query(db.collection('groups').doc(currentUser.uid + group).collection('fridge'))
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray = []
       querySnapshot.forEach((doc) => {
@@ -79,7 +79,7 @@ export default function Dashboard() {
 
       try {
         console.log('sending data')
-        await db.collection('groups').doc(currentUser.uid + group).collection('list').add({
+        await db.collection('groups').doc(currentUser.uid + group).collection('fridge').add({
           title,
           complete: false
         })
@@ -142,7 +142,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1>Fridge</h1>
       <p>Hello, {currentUser.displayName}</p>
       <p>Current group: {group}</p>
       <div className='collaborators'>

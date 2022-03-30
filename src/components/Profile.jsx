@@ -30,7 +30,7 @@ export default function Dashboard() {
 
 
   useEffect(() => {
-    fetchInvitations('didrik@sater')
+    fetchInvitations(currentUser.email)
   }, [])
   function handleLogout() {
     logout()
