@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import ForgotPW from './ForgotPW';
 import Profile from './Profile';
 import UpdateProfile from './UpdateProfile';
+import Fridge from './Fridge';
 import './tempstyles.css'
 
 function App() {
@@ -29,6 +30,11 @@ function App() {
             <Route exact path='/profile' element={
               <PrivateRoute>
                 <Profile />
+              </PrivateRoute>
+            } />
+            <Route exact path='/fridge' element={
+              <PrivateRoute>
+                <Fridge />
               </PrivateRoute>
             } />
 
