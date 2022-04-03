@@ -1,3 +1,4 @@
+import { DocumentReference } from 'firebase/firestore';
 import React, { useContext, useState, useEffect } from 'react';
 import { auth, db } from '../firebase.js'
 
@@ -15,9 +16,32 @@ export function AuthProvider({ children }) {
   async function signup(email, password) {
     try {
       const res = await auth.createUserWithEmailAndPassword(email, password)
-      db.collection(email + '_collabs').add({
-        collabName: email
+      db.collection('userData').doc(res.user.uid).collection('groupAccess').add({
+        listName: 'personal'
       })
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          // surely it's possible to access docref while writing the the doc the firs time right?
+          db.collection('userData').doc(res.user.uid).collection('groupAccess').doc(docRef.id).update({
+            listID: docRef.id
+          })
+        })
+
+      console.log("when u make a new user this is res: ", res);
+      console.log("uid?: ", res.user.uid);
+
+      // // should make these DB writes modular and async/ await as well
+      // db.collection('userData').doc(res.user.uid)({
+      //   bio: 'hey',
+
+      // })
+      // let firstListName = 'personal'
+      // db.collection('userData').doc(res.user.uid).collection('listAccess').add({
+      //   listName: firstListName,
+      //   listID: res.user.uid + firstListName,
+
+      // })
+
       return {
         error: false,
         message: res

@@ -1,0 +1,19 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8rem;
+    gap: 2rem;
+}
+
+.ProfilePFP {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+}
+
+.profileOptions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

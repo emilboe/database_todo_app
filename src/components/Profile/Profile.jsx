@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { db } from '../firebase';
+import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
 import { Link, useNavigate } from 'react-router-dom';
-import Todo from './TodoItem';
-import { query, onSnapshot, doc, updateDoc, deleteDoc, collection } from 'firebase/firestore';
-
+import { query, onSnapshot } from 'firebase/firestore';
+import './Profile.css'
 
 
 export default function Dashboard() {
@@ -28,22 +27,22 @@ export default function Dashboard() {
 
   }
 
-
   useEffect(() => {
     fetchInvitations(currentUser.email)
-  }, [])
+  }, [currentUser.email])
+
   function handleLogout() {
     logout()
     navigate('/login')
   }
 
+  const capitalize = str => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   return (
-    <>
-      <h1>Profile</h1>
-      <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
-      <p>{currentUser.displayName}</p>
-      <br />
-      <br /><br />
+    <div className='profileContainer'>
+      <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="ProfilePFP" />
+      <h2 className='otoma'>{capitalize(currentUser.displayName)}</h2>
 
       {
         invitations.map(invite => (
@@ -55,13 +54,12 @@ export default function Dashboard() {
           </div>
         ))
       }
-      < br /><br />
-      <button className="red" onClick={handleLogout}>Log out</button>
-      <br />
-      <Link to="/update-profile"><button className="green">Update Profile</button></Link>
-      <br></br>
-      <Link to="/"><button className="green">Dashboard</button></Link>
-    </>
+      <div className='profileOptions'>
+        <Link to="/update-profile"><button className="baseWhite">Update Profile</button></Link>
+        <Link to="/"><button className="baseWhite">Dashboard</button></Link>
+        <button className="coral" onClick={handleLogout}>Log out</button>
+      </div>
+    </div>
   )
 
 }

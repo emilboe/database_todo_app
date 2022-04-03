@@ -1,25 +1,28 @@
 import { AuthProvider } from '../contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './Signup';
-import Dashboard from './Dashboard';
+import Handleliste from './ShopList';
 import Login from './Login';
 import Lost from './Lost';
 import PrivateRoute from './PrivateRoute';
 import ForgotPW from './ForgotPW';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 import UpdateProfile from './UpdateProfile';
 import Fridge from './Fridge';
-import './tempstyles.css'
+import NavBar from './NavBar/NavBar';
+import Groups from './Groups'
+import './globals.css'
 
 function App() {
   return (
     <Router>
       <section>
         <AuthProvider>
+          <NavBar />
           <Routes>
             <Route exact path='/' element={
               <PrivateRoute>
-                <Dashboard />
+                <Handleliste />
               </PrivateRoute>
             } />
             <Route exact path='/update-profile' element={
@@ -35,6 +38,11 @@ function App() {
             <Route exact path='/fridge' element={
               <PrivateRoute>
                 <Fridge />
+              </PrivateRoute>
+            } />
+            <Route exact path='/groups' element={
+              <PrivateRoute>
+                <Groups />
               </PrivateRoute>
             } />
 

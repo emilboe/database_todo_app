@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebase';
 import { Link, useNavigate } from 'react-router-dom';
-import Todo from './TodoItem';
-import { collection, query, onSnapshot, doc, updateDoc, deleteDoc, QuerySnapshot } from 'firebase/firestore';
+import Todo from './TodoItem/TodoItem';
+import {  query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 
 
@@ -15,7 +15,6 @@ export default function Fridge() {
   const [todo, setTodo] = useState([])
   const [collaborators, setCollaborators] = useState([])
   const [group, setGroup] = useState('personal')
-  const collabArray = Object.values(collaborators)
   const navigate = useNavigate()
 
   const fetchList = (col) => {
@@ -48,8 +47,8 @@ export default function Fridge() {
 
   useEffect(() => {
     fetchList(list)
-    fetchCollabs(list + '_collabs')
-  }, [])
+    fetchCollabs()
+  })
 
 
   const handleEdit = async (todo, title) => {
@@ -60,16 +59,6 @@ export default function Fridge() {
   }
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, list, id))
-  }
-
-  const handleSwitchList = async (event) => {
-    event.preventDefault()
-
-    if (list !== '') {
-      console.log('list:', list)
-      fetchList(list)
-    }
-    else console.log('no list selected')
   }
 
   const handleSubmit = async (event) => {
@@ -111,7 +100,6 @@ export default function Fridge() {
     })
     if (!found) {
       try {
-        let length = collaborators.length
         console.log('sending data')
         await db.collection('invitations').doc(collabName).collection('invites').add({
           collabName,

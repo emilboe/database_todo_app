@@ -1,22 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import Todo from './TodoItem';
-import { collection, query, onSnapshot, doc, updateDoc, deleteDoc, QuerySnapshot } from 'firebase/firestore';
+import Todo from './TodoItem/TodoItem';
+import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 
 
-export default function Dashboard() {
-  const { currentUser, logout } = useAuth()
+export default function ShopList() {
+  const { currentUser } = useAuth()
   const [title, setTitle] = useState('')
   const [collabName, setCollabName] = useState('')
   const [list, setList] = useState(currentUser.email)
   const [todo, setTodo] = useState([])
   const [collaborators, setCollaborators] = useState([])
+
+  const fetchUserListID = (uid) => {
+    const q = query(db.collection('userData').doc(uid).collection('groupAccess'))
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let groupIDs = []
+      querySnapshot.forEach((doc) => {
+        groupIDs.push({ ...doc.data(), id: doc.id })
+      })
+      setGroupList(groupIDs)
+    })
+    return () => unsub()
+  }
+
+  
   const [group, setGroup] = useState('personal')
-  const collabArray = Object.values(collaborators)
-  const navigate = useNavigate()
+  const [groupList, setGroupList] = useState('personal')
 
   const fetchList = (col) => {
     const q = query(db.collection('groups').doc(currentUser.uid + group).collection('list'))
@@ -48,8 +60,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchList(list)
-    fetchCollabs(list + '_collabs')
-  }, [])
+    fetchCollabs()
+    fetchUserListID(currentUser.uid)
+  })
 
 
   const handleEdit = async (todo, title) => {
@@ -62,16 +75,6 @@ export default function Dashboard() {
     await deleteDoc(doc(db, list, id))
   }
 
-  const handleSwitchList = async (event) => {
-    event.preventDefault()
-
-    if (list !== '') {
-      console.log('list:', list)
-      fetchList(list)
-    }
-    else console.log('no list selected')
-  }
-
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -79,7 +82,7 @@ export default function Dashboard() {
 
       try {
         console.log('sending data')
-        await db.collection('groups').doc(currentUser.uid + group).collection('list').add({
+        await db.collection('groups').doc(currentUser.uid + group.id).collection('list').add({
           title,
           complete: false
         })
@@ -111,7 +114,6 @@ export default function Dashboard() {
     })
     if (!found) {
       try {
-        let length = collaborators.length
         console.log('sending data')
         await db.collection('invitations').doc(collabName).collection('invites').add({
           collabName,
@@ -133,22 +135,13 @@ export default function Dashboard() {
 
   }
 
-  
-
-  function handleLogout() {
-    logout()
-    navigate('/login')
-  }
-
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1>Shopping List</h1>
       <p>Hello, {currentUser.displayName}</p>
       <p>Current group: {group}</p>
       <div className='collaborators'>
         Collaborators:
-        {/* {console.log('uid:', currentUser.uid)} */}
-        {/* {console.log('collaborators', collaborators)} */}
         {
           collaborators.map(user => (
             <p>{user.collabName}</p>
@@ -187,26 +180,6 @@ export default function Dashboard() {
           />
         ))
       }
-      {/* 
-
-      // change list text input for testing:
-
-      <br /><br />
-      <form onSubmit={handleSwitchList}>
-        <label>Change List: </label>
-        <input
-          type='text'
-          value={list}
-          onChange={(e) => setList(e.target.value)}
-        ></input>
-        <button type="submit" className='green'>Change</button>
-      </form> */}
-
-      <br /><br />
-      <button className="red" onClick={handleLogout}>Log out</button>
-      <br />
-      <Link to="/profile"><button className="green">Profile</button></Link>
-      <Link to="/fridge"><button className="green">Fridge</button></Link>      
     </>
   )
 

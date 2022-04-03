@@ -1,0 +1,14 @@
+.groupItem {
+    background-color: white;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: .8rem;
+    box-shadow: 1px 0 12px rgba(108, 108, 108, 0.25);
+    transition: .2s all ease-in-out;
+    &:hover{
+        transform: scale(98%);
+    }
+}
+.groupTitle{
+    font-family: 'otama-ep';
+}
