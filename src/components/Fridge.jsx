@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebase';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Todo from './TodoItem/TodoItem';
 import {  query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
@@ -44,12 +44,10 @@ export default function Fridge() {
 
   }
 
-
   useEffect(() => {
     fetchList(list)
     fetchCollabs()
   })
-
 
   const handleEdit = async (todo, title) => {
     await updateDoc(doc(db, list, todo.id), { title: title })
@@ -135,8 +133,6 @@ export default function Fridge() {
       <p>Current group: {group}</p>
       <div className='collaborators'>
         Collaborators:
-        {/* {console.log('uid:', currentUser.uid)} */}
-        {/* {console.log('collaborators', collaborators)} */}
         {
           collaborators.map(user => (
             <p>{user.collabName}</p>
@@ -175,25 +171,6 @@ export default function Fridge() {
           />
         ))
       }
-      {/* 
-
-      // change list text input for testing:
-
-      <br /><br />
-      <form onSubmit={handleSwitchList}>
-        <label>Change List: </label>
-        <input
-          type='text'
-          value={list}
-          onChange={(e) => setList(e.target.value)}
-        ></input>
-        <button type="submit" className='green'>Change</button>
-      </form> */}
-
-      <br /><br />
-      <button className="red" onClick={handleLogout}>Log out</button>
-      <br />
-      <Link to="/profile"><button className="green">Profile</button></Link>
     </>
   )
 

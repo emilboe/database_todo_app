@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Otama-ep';
-    src: local('Otama-ep'), url(./fonts/Otama-ep-webfont.woff) format('woff');
+    src: local('Otama-ep'), url(../fonts/Otama-ep-webfont.woff) format('woff');
 }
 
 .otoma {
