@@ -1,19 +1,21 @@
-import { AuthProvider } from '../contexts/AuthContext';
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Signup from './Signup';
+import Signup from './Signup + Login/Signup';
 import Handleliste from './ShopList';
-import Login from './Login';
+import Login from './Signup + Login/Login';
 import Lost from './Lost';
 import PrivateRoute from './PrivateRoute';
-import ForgotPW from './ForgotPW';
+import ForgotPW from './Signup + Login/ForgotPW';
 import Profile from './Profile/Profile';
 import UpdateProfile from './UpdateProfile';
-import Fridge from './Fridge';
+import Fridge from './Fridge/Fridge';
 import NavBar from './NavBar/NavBar';
 import Groups from './Groups'
 import './globals.css'
 
 function App() {
+
+  console.log(useAuth())
   return (
     <Router>
       <section>

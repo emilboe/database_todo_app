@@ -1,0 +1,25 @@
+.loginContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 10vh;
+    width: 80vw;
+}
+
+form,
+.inputSection {
+    width: 100%;
+}
+
+.forgotPWSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.signupSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

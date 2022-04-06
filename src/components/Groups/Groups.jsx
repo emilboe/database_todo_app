@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { db } from '../firebase';
-import Group from './GroupItem/GroupItem';
+import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
+import Group from '../GroupItem/GroupItem';
 import { query, onSnapshot } from 'firebase/firestore';
 
 

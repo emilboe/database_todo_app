@@ -19,6 +19,7 @@ export function AuthProvider({ children }) {
       db.collection('userData').doc(res.user.uid).collection('groupAccess').add({
         listName: 'personal'
       })
+      // this whole section might me unnecesarry as it is possible to access the doc id later.
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);
           // surely it's possible to access docref while writing the the doc the firs time right?
@@ -201,7 +202,7 @@ export function AuthProvider({ children }) {
     updatePhotoURL
   }
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={value} >
       {!loading && children}
     </AuthContext.Provider>
   )

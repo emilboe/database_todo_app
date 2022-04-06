@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { db } from '../firebase';
-import { useNavigate } from 'react-router-dom';
-import Todo from './TodoItem/TodoItem';
-import {  query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
+import Todo from '../TodoItem/TodoItem';
+import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 
 
-export default function Fridge() {
-  const { currentUser, logout } = useAuth()
+export default function ShopList() {
+  const { currentUser } = useAuth()
   const [title, setTitle] = useState('')
   const [collabName, setCollabName] = useState('')
   const [list, setList] = useState(currentUser.email)
   const [todo, setTodo] = useState([])
   const [collaborators, setCollaborators] = useState([])
+
+  const fetchUserListID = (uid) => {
+    const q = query(db.collection('userData').doc(uid).collection('groupAccess'))
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let groupIDs = []
+      querySnapshot.forEach((doc) => {
+        groupIDs.push({ ...doc.data(), id: doc.id })
+      })
+      setGroupList(groupIDs)
+    })
+    return () => unsub()
+  }
+
+  
   const [group, setGroup] = useState('personal')
-  const navigate = useNavigate()
+  const [groupList, setGroupList] = useState('personal')
 
   const fetchList = (col) => {
-    const q = query(db.collection('groups').doc(currentUser.uid + group).collection('fridge'))
+    const q = query(db.collection('groups').doc(currentUser.uid + group).collection('list'))
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray = []
       querySnapshot.forEach((doc) => {
@@ -44,10 +57,13 @@ export default function Fridge() {
 
   }
 
+
   useEffect(() => {
     fetchList(list)
     fetchCollabs()
+    fetchUserListID(currentUser.uid)
   })
+
 
   const handleEdit = async (todo, title) => {
     await updateDoc(doc(db, list, todo.id), { title: title })
@@ -66,7 +82,7 @@ export default function Fridge() {
 
       try {
         console.log('sending data')
-        await db.collection('groups').doc(currentUser.uid + group).collection('fridge').add({
+        await db.collection('groups').doc(currentUser.uid + group.id).collection('list').add({
           title,
           complete: false
         })
@@ -119,16 +135,9 @@ export default function Fridge() {
 
   }
 
-  
-
-  function handleLogout() {
-    logout()
-    navigate('/login')
-  }
-
   return (
     <>
-      <h1>Fridge</h1>
+      <h1>Shopping List</h1>
       <p>Hello, {currentUser.displayName}</p>
       <p>Current group: {group}</p>
       <div className='collaborators'>
