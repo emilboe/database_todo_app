@@ -30,7 +30,9 @@ export default function ForgotPW() {
     return (
         <>
         <div className="loginContainer">
+        <div className="registerHeader">
             <h1>Tilbakestill passord</h1>
+        </div>
             <form onSubmit={handleSubmit}>
 
                 <div>{currentUser && "Du er logget inn som : " + currentUser.email}</div>
@@ -45,7 +47,7 @@ export default function ForgotPW() {
             </form>
             {message}
             <br />
-            <div>
+            <div className='signupSection'>
             <label>Gå tilbake til innlogging</label>
                 <Link to='/login'><button className="greenBorder">Logg inn</button></Link>
             </div>

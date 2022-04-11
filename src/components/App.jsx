@@ -21,6 +21,7 @@ function App() {
       <section>
         <AuthProvider>
           <NavBar />
+          <div className="globalBox">
           <Routes>
             <Route exact path='/' element={
               <PrivateRoute>
@@ -54,6 +55,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPW />} />
             <Route path="/*" element={<Lost />} />
           </Routes>
+          </div>
         </AuthProvider>
       </section>
     </Router>

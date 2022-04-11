@@ -137,21 +137,21 @@ export default function ShopList() {
 
   return (
     <>
-      <h1>Shopping List</h1>
-      <p>Hello, {currentUser.displayName}</p>
-      <p>Current group: {group}</p>
+      <p>Brukernavn: {currentUser.displayName}</p>
+      <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
+      <p>Gruppe: {group}</p>
       <div className='collaborators'>
-        Collaborators:
+        <p>Collaborators:
         {
           collaborators.map(user => (
             <p>{user.collabName}</p>
           ))
-        }
-        <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
+        }</p>
+      <h1>Handleliste</h1>
         <form onSubmit={handleSubmitInvitation} className="addInput">
           <input
             type='email'
-            placeholder='Invite collaborator'
+            placeholder='Inviter til gruppe'
             value={collabName}
             onChange={(e) => setCollabName(e.target.value)}
           ></input>
@@ -162,7 +162,7 @@ export default function ShopList() {
       <form onSubmit={handleSubmit} className="addInput">
         <input
           type='text'
-          placeholder='New note'
+          placeholder='Legg til'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></input>

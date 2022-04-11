@@ -45,7 +45,9 @@ export default function Signup() {
     return (
         <>
         <div className="loginContainer">
-            <h1>Registrer bruker</h1>
+            <div className="registerHeader">
+                <h1>Registrer deg</h1>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Navn</label><br />
@@ -63,11 +65,11 @@ export default function Signup() {
                     <label>Gjenta passord</label><br />
                     <input type="password" ref={passwordConfirmRef} required />
                 </div>
-                <button className="greenBG" disabled={loading} type="submit">Sign up</button>
+                <button className="greenBG" disabled={loading} type="submit">Registrer deg</button>
                 <div>{error ? error : ''}</div>
             </form>
 
-            <div>Har du allerede en bruker? <Link to="/login">
+            <div className="signupSection">Har du allerede en bruker? <Link to="/login">
                 <button className="greenBorder">Logg inn</button></Link></div>
             <div>{currentUser && "you're already logged in as: " + currentUser.email}</div>
             </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import './login.css';
+import logo from '../assets/logo.svg';
 
 export default function Login() {
     const emailRef = useRef()
@@ -38,7 +39,9 @@ export default function Login() {
 
     return (
         <div className="loginContainer">
-            <h1>Logo</h1>
+            <div className="loginHeader">
+              <img src={logo} alt="Hamle logo"/>
+            </div>
             <form onSubmit={handleSubmit} className="fillForm">
                 <div className='inputSection'>
                     <label>E-post</label>

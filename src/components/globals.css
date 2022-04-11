@@ -11,12 +11,12 @@
 
 @font-face {
     font-family: 'Delius';
-    src: local('Delius'), url(../fonts/Delius-Regular.ttf) format('ttf');
+    src: url(../fonts/Delius-Regular.ttf);
 }
 
 @font-face {
     font-family: 'Inter';
-    src: local('Inter'), url(../fonts/Inter-VariableFont_slnt\,wght.ttf) format('ttf');
+    src: url(../fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 :root {
@@ -27,8 +27,22 @@
     --color-coral: LightCoral;
     --color-dark: rgb(50, 50, 50);
     --color-light: rgb(240, 240, 240);
-    --headings-font: "Delius", sans-serif;
-    --content-font: "Inter", sans-serif;
+    --color-grey: #d3d3d3;
+    --headings-font: 'Delius', sans-serif;
+    --content-font: 'Inter', sans-serif;
+}
+
+.globalBox{
+    margin-bottom: 10vh;
+}
+
+h1,
+h2{
+    font-family: var(--headings-font);
+}
+
+p{
+    font-family: var(--content-font);
 }
 
 body {
@@ -74,7 +88,7 @@ input {
     /* margin: .5rem 0; */
     font-family: inherit;
     font-weight: inherit;
-    border: none;
+    border: 2px var(--color-grey) solid;;
     border-radius: 0.5rem;
 }
 
@@ -87,6 +101,7 @@ textarea,
 input[type]:focus {
     outline: none;
     box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
+    border: 2px var(--color-pink) solid;
 }
 
 .todoItems {
