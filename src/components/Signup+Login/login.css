@@ -9,17 +9,13 @@
 }
 
 form,
-.inputSection {
+.inputSection,
+.loginContainer button,
+.signupSection, 
+.signupSection button{
     width: 100%;
 }
 
-.forgotPWSection {
-    display: flex;
-    flex-direction: column;
-}
-
-.signupSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.forgotPWSection a {
+    color: black;
 }

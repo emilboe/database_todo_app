@@ -29,24 +29,27 @@ export default function ForgotPW() {
 
     return (
         <>
-            <h1>Password Reset</h1>
+        <div className="loginContainer">
+            <h1>Tilbakestill passord</h1>
             <form onSubmit={handleSubmit}>
 
-                <div>{currentUser && "You're currently logged in with : " + currentUser.email}</div>
+                <div>{currentUser && "Du er logget inn som : " + currentUser.email}</div>
                 <br />
                 <div>
-                    <label>Email</label><br />
+                    <label>E-post</label><br />
                     <input type="email" ref={emailRef} required />
                 </div>
                 <br />
-                <button className="purp" disabled={loading} type="submit">Reset Password</button>
+                <button className="greenBG" disabled={loading} type="submit">Tilbakestill passord</button>
                 <div>{error ? error : ''}</div>
             </form>
             {message}
             <br />
             <div>
-                <Link to='/login'><button className="green">Login</button></Link>
+            <label>Gå tilbake til innlogging</label>
+                <Link to='/login'><button className="greenBorder">Logg inn</button></Link>
             </div>
+        </div>
         </>
     )
 }
