@@ -43,28 +43,28 @@ export default function NavBar() {
         />
         <div className="navigation">
           <ul>
-            <li className="list active" data-color="#dc143c">
-              <NavLink to="/fridge">
-                <span className="icon"><i className="far fa-archive"></i></span>
-                <span className="title">Fridge</span>
-              </NavLink>
-            </li>
             <li className="list" data-color="#3c40c6">
               <NavLink to="/">
                 <span className="icon"><i className="far fa-list-ul"></i></span>
-                <span className="title">List</span>
+                <span className="title">Handleliste</span>
+              </NavLink>
+            </li>
+            <li className="list active" data-color="#dc143c">
+              <NavLink to="/fridge">
+                <span className="icon"><i className="far fa-archive"></i></span>
+                <span className="title">Inventar</span>
               </NavLink>
             </li>
             <li className="list" data-color="#05c46b">
               <NavLink to="/groups">
                 <span className="icon"><i className="far fa-users"></i></span>
-                <span className="title">Groups</span>
+                <span className="title">Grupper</span>
               </NavLink>
             </li>
             <li className="list" data-color="#ffa801">
               <NavLink to="/profile">
                 <span className="icon"><i className="far fa-user"></i></span>
-                <span className="title">Profile</span>
+                <span className="title">Profil</span>
               </NavLink>
             </li>
             <div className="indicator"></div>

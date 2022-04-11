@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import './login.css';
+import logo from '../assets/logo.svg';
 
 export default function Login() {
     const emailRef = useRef()
@@ -38,31 +39,31 @@ export default function Login() {
 
     return (
         <div className="loginContainer">
-            <h1>Logo</h1>
+            <div className="loginHeader">
+              <img src={logo} alt="Hamle logo"/>
+            </div>
             <form onSubmit={handleSubmit} className="fillForm">
                 <div className='inputSection'>
-                    <label>Email</label>
+                    <label>E-post</label>
                     <input type="email" ref={emailRef} required />
                 </div>
                 <div>
-                    <label>Password</label>
+                    <label>Passord</label>
                     <input type="password" ref={passwordRef} required />
                 </div>
-                <button className="greenBG" disabled={loading} type="submit">Log in</button>
-                <div>{error ? error : ''}</div>
                 <div className='forgotPWSection'>
-                    <label>Glemt passord?</label>
-                    <Link to='/forgot-password'><button className="grassBG">Reset passord</button></Link>
+                    <Link to='/forgot-password'>Glemt passord?</Link>
                 </div>
-
+                <button className="greenBG" disabled={loading} type="submit">Logg in</button>
+                <div>{error ? error : ''}</div>
             </form>
             <div className='signupSection'>
-                <label>Don't have an account?</label>
-                <Link to="/signup"> <button className="grassBG">Sign up</button></Link>
+                <label>Har du ikke en bruker?</label>
+                <Link to="/signup"> <button className="greenBorder">Registrer deg</button></Link>
             </div>
 
 
-            <div>{currentUser && "you're already logged in as: " + currentUser.email}</div>
+            <div>{currentUser && "Du er allerede logget inn som: " + currentUser.email}</div>
         </div>
     )
 }

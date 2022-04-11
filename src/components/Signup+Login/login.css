@@ -1,0 +1,46 @@
+.loginContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100vw;
+}
+
+.loginHeader{
+    background-image: url('../assets/bakgrunn.svg');
+    height:50vh;
+}
+
+.registerHeader{
+    background-image: url('../assets/bakgrunn_02.svg');
+    height:30vh;
+}
+
+.registerHeader h1 {
+    color: var(--color-moss);
+}
+
+.loginHeader,
+.registerHeader {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+form,
+.inputSection,
+.loginContainer button,
+.signupSection, 
+.signupSection button{
+    width: 80vW;
+}
+
+.forgotPWSection a {
+    color: black;
+}
