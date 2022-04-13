@@ -8,7 +8,7 @@ import Lost from '../components/Lost/Lost';
 import PrivateRoute from './PrivateRoute';
 import ForgotPW from './Signup+Login/ForgotPW';
 import Profile from './Profile/Profile';
-//import UpdateProfile from '..components/UpdateProfile/';
+import UpdateProfile from './Profile/UpdateProfile';
 import Fridge from './Fridge/Fridge';
 import NavBar from './NavBar/NavBar';
 import Groups from '../components/Groups/Groups'
@@ -31,11 +31,11 @@ export default function App() {
                   <NavBar />
                 </PrivateRoute>
               } />
-              {/*<Route exact path='/update-profile' element={
-              <PrivateRoute>
-                <UpdateProfile />
-              </PrivateRoute>
-            } />*/}
+              <Route exact path='/update-profile' element={
+                <PrivateRoute>
+                  <UpdateProfile />
+                </PrivateRoute>
+              } />
 
               <Route exact path='/profile' element={
                 <PrivateRoute>

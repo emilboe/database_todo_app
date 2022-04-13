@@ -16,9 +16,7 @@ export function AuthProvider({ children }) {
   async function signup(email, password, displayName) {
     try {
       const res = await auth.createUserWithEmailAndPassword(email, password)
-      updateUsername(displayName)
-      console.log('trying to update name', displayName)
-      
+
       db.collection('userData').doc(res.user.uid).collection('groupAccess').add({
         listName: 'personal'
       })
@@ -34,6 +32,7 @@ export function AuthProvider({ children }) {
       console.log("when u make a new user this is res: ", res);
       console.log("uid?: ", res.user.uid);
 
+      res.user.updateProfile({ displayName })
       // // should make these DB writes modular and async/ await as well
       // db.collection('userData').doc(res.user.uid)({
       //   bio: 'hey',

@@ -7,7 +7,7 @@ export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup, currentUser } = useAuth()
+    const { signup, currentUser, updateUsername } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -23,15 +23,11 @@ export default function Signup() {
         setLoading(true)
         const res = await signup(emailRef.current.value, passwordRef.current.value, nameRef.current.value)
 
+        setLoading(false)
         // Not a great way to handle error codes, but it's fine for now.
         // Prints the error from firebase in a human readable way.
-        setLoading(false)
-        if (res.error) {
-            setError(res.message.message.substring(10).replace('auth/', '').replace(/-/g, ' '))
-        }
-        else {
-            navigate('/')
-        }
+        if (res.error) setError(res.message.message.substring(10).replace('auth/', '').replace(/-/g, ' '))
+        else navigate('/')
     }
 
     const redirectIfLoggedIn = () => {
