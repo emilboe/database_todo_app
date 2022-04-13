@@ -33,7 +33,7 @@ export default function NavBar() {
   }
 
   return (
-    <React.Fragment>
+    <>
       <nav>
         <link
           rel="stylesheet"
@@ -78,7 +78,7 @@ export default function NavBar() {
           </ul>
         </div>
       </nav>
-    </React.Fragment>
+    </>
   )
 
 }

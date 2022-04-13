@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AuthProvider } from '../contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './Signup+Login/Signup';
@@ -13,10 +13,14 @@ import Fridge from './Fridge/Fridge';
 import NavBar from './NavBar/NavBar';
 import Groups from '../components/Groups/Groups'
 import './globals.css'
+import CurrentGroup from './CurrentGroup/CurrentGroup';
 
 
 
 export default function App() {
+
+  const [group, setGroup] = useState('personal')
+
   return (
     <Router>
       <section>
@@ -27,7 +31,15 @@ export default function App() {
             <Routes>
               <Route exact path='/' element={
                 <PrivateRoute>
+                  <CurrentGroup />
                   <Handleliste />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route exact path='/fridge' element={
+                <PrivateRoute>
+                  <CurrentGroup />
+                  <Fridge />
                   <NavBar />
                 </PrivateRoute>
               } />
@@ -40,12 +52,6 @@ export default function App() {
               <Route exact path='/profile' element={
                 <PrivateRoute>
                   <Profile />
-                  <NavBar />
-                </PrivateRoute>
-              } />
-              <Route exact path='/fridge' element={
-                <PrivateRoute>
-                  <Fridge />
                   <NavBar />
                 </PrivateRoute>
               } />

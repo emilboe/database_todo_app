@@ -62,7 +62,7 @@ export default function ShopList() {
     fetchList(list)
     fetchCollabs()
     fetchUserListID(currentUser.uid)
-  })
+  }, [])
 
 
   const handleEdit = async (todo, title) => {

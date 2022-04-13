@@ -8,7 +8,7 @@ export default function UpdateProfile() {
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
     const displayNameRef = useRef(currentUser.displayName)
-    const photoURLRef = useRef(currentUser.photoURL)
+    const photoURLRef = useRef(currentUser.photoURL ? currentUser.photoURL : '')
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
@@ -33,16 +33,16 @@ export default function UpdateProfile() {
 
         if (emailRef.current.value !== currentUser.email) {
             promises.push(updateEmail(emailRef.current.value))
-        } 
+        }
         else if (displayNameRef.current.value !== currentUser.displayName) {
             promises.push(updateUsername(displayNameRef.current.value))
-        } 
+        }
         else if (photoURLRef.current.value !== currentUser.photoURL) {
             promises.push(updatePhotoURL(photoURLRef.current.value))
-        } 
+        }
         else if (passwordRef.current.value) {
             promises.push(updatePassword(passwordRef.current.value))
-        } 
+        }
         else {
             setLoading(false)
             setMessage("You haven't changed anything!")
@@ -63,43 +63,41 @@ export default function UpdateProfile() {
     }
 
     return (
-        <>
+        <React.Fragment>
             <h1>Update Profile</h1>
             <form onSubmit={handleSubmit}>
                 <div>{currentUser && "You're currently logged in with : " + currentUser.email}</div>
-                <br />
+
                 <div>
-                    <label>DisplayName</label><br />
+                    <label>DisplayName</label>
                     <input
                         type="text"
                         ref={displayNameRef}
                         required
                         autoComplete="off"
-                        defaultValue={currentUser.displayName}  />
+                        defaultValue={currentUser.displayName} />
                 </div>
                 <div>
-                    <br />
+
                     <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? 'profile picture' : 'no pfp url'} className="pfp" />
-                    <br />
-                    <label>PhotoURL</label><br />
+
+                    <label>PhotoURL</label>
                     <input
                         type="text"
                         ref={photoURLRef}
-                        required
                         autoComplete="off"
-                        defaultValue={currentUser.photoURL}  />
+                        defaultValue={currentUser.photoURL} />
                 </div>
                 <div>
-                    <label>Email</label><br />
+                    <label>Email</label>
                     <input
                         type="email"
                         ref={emailRef}
-                        required
                         autoComplete="off"
                         defaultValue={currentUser.email} />
                 </div>
                 <div>
-                    <label>Password</label><br />
+                    <label>Password</label>
                     <input
                         type="password"
                         autoComplete="off"
@@ -109,7 +107,7 @@ export default function UpdateProfile() {
                     />
                 </div>
                 <div>
-                    <label>Confirm Password</label><br />
+                    <label>Confirm Password</label>
                     <input
                         type="password"
                         autoComplete="off"
@@ -117,17 +115,11 @@ export default function UpdateProfile() {
                         placeholder="Leave blank to not change"
                     />
                 </div>
-                <br />
-                <button className="purp" disabled={loading} type="submit">Update Information</button>
+                <button className="grassBG" disabled={loading} type="submit">Update Information</button>
                 <div>{error ? error : ''}</div>
                 <div>{message ? message : ''}</div>
             </form>
-            <br />
-
-            <button onClick={handleLogout} className="green">Log out</button>
-            <br />
-            <br />
-            <Link to="/"><button className="red">Cancel</button></Link>
-        </>
+            <Link to="/"><button>Cancel</button></Link>
+        </React.Fragment>
     )
 }

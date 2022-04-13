@@ -47,7 +47,7 @@ export default function Fridge() {
   useEffect(() => {
     fetchList(list)
     fetchCollabs()
-  })
+  }, [])
 
   const handleEdit = async (todo, title) => {
     await updateDoc(doc(db, list, todo.id), { title: title })
