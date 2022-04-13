@@ -59,7 +59,7 @@ export default function Login() {
             </form>
             <div className='signupSection'>
                 <label>Har du ikke en bruker?</label>
-                <Link to="/signup"> <button className="greenBorder">Registrer deg</button></Link>
+                <Link to="/signup"><button className="greenBorder">Registrer deg</button></Link>
             </div>
 
 

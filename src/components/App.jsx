@@ -20,12 +20,13 @@ function App() {
     <Router>
       <section>
         <AuthProvider>
-          <NavBar />
+          
           <div className="globalBox">
           <Routes>
             <Route exact path='/' element={
               <PrivateRoute>
                 <Handleliste />
+                <NavBar />
               </PrivateRoute>
             } />
             {/*<Route exact path='/update-profile' element={
@@ -37,16 +38,19 @@ function App() {
             <Route exact path='/profile' element={
               <PrivateRoute>
                 <Profile />
+                <NavBar />
               </PrivateRoute>
             } />
             <Route exact path='/fridge' element={
               <PrivateRoute>
                 <Fridge />
+                <NavBar />
               </PrivateRoute>
             } />
             <Route exact path='/groups' element={
               <PrivateRoute>
                 <Groups />
+                <NavBar />
               </PrivateRoute>
             } />
 
