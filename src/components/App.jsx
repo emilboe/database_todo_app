@@ -13,6 +13,7 @@ import NavBar from './NavBar/NavBar';
 import Groups from '../components/Groups/Groups'
 import './globals.css'
 
+
 function App() {
 
   console.log(useAuth())
@@ -22,6 +23,7 @@ function App() {
         <AuthProvider>
           
           <div className="globalBox">
+          <link rel="manifest" href="../build/manifest.json"/>
           <Routes>
             <Route exact path='/' element={
               <PrivateRoute>
