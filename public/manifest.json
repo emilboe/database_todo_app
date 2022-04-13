@@ -1,25 +1,57 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "todologo.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "todologo.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "todologo.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "name": "Hamle",
+    "theme_color": "#005C66",
+    "background_color": "#FBDCE2",
+    "display": "standalone",
+    "scope": "./",
+    "start_url": "./",
+    "icons": [{
+            "src": "/icons/72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/100.png",
+            "sizes": "100x100",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/167.png",
+            "sizes": "167x167",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
 }
