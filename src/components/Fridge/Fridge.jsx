@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import Todo from '../TodoItem/TodoItem';
-import {  query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 
 
@@ -119,7 +119,7 @@ export default function Fridge() {
 
   }
 
-  
+
 
   function handleLogout() {
     logout()
@@ -127,7 +127,7 @@ export default function Fridge() {
   }
 
   return (
-    <>
+    <React.Fragment>
       <h1>Fridge</h1>
       <p>Hello, {currentUser.displayName}</p>
       <p>Current group: {group}</p>
@@ -171,7 +171,7 @@ export default function Fridge() {
           />
         ))
       }
-    </>
+    </React.Fragment>
   )
 
 }

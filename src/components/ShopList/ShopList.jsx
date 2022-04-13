@@ -26,7 +26,7 @@ export default function ShopList() {
     return () => unsub()
   }
 
-  
+
   const [group, setGroup] = useState('personal')
   const [groupList, setGroupList] = useState('personal')
 
@@ -136,18 +136,18 @@ export default function ShopList() {
   }
 
   return (
-    <>
+    <React.Fragment>
       <p>Brukernavn: {currentUser.displayName}</p>
       <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
       <p>Gruppe: {group}</p>
       <div className='collaborators'>
         <p>Collaborators:
-        {
-          collaborators.map(user => (
-            <p>{user.collabName}</p>
-          ))
-        }</p>
-      <h1>Handleliste</h1>
+          {
+            collaborators.map(user => (
+              <p>{user.collabName}</p>
+            ))
+          }</p>
+        <h1>Handleliste</h1>
         <form onSubmit={handleSubmitInvitation} className="addInput">
           <input
             type='email'
@@ -180,7 +180,7 @@ export default function ShopList() {
           />
         ))
       }
-    </>
+    </React.Fragment>
   )
 
 }

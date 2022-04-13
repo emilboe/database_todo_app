@@ -39,10 +39,11 @@ export default function Dashboard() {
   const capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+  const { displayName, photoURL } = currentUser
   return (
-    <div className='profileContainer'>
-      <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="ProfilePFP" />
-      <h2 className='otoma'>{capitalize(currentUser.displayName)}</h2>
+    < div className='profileContainer' >
+      <img src={photoURL ? photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={photoURL ? displayName + ' profile picture' : 'default profile picture'} className="ProfilePFP" />
+      <h2 className='otoma'>{ displayName ? capitalize(displayName) : 'username'}</h2>
 
       {
         invitations.map(invite => (
@@ -59,7 +60,7 @@ export default function Dashboard() {
         <Link to="/"><button className="baseWhite">Dashboard</button></Link>
         <button className="coral" onClick={handleLogout}>Log out</button>
       </div>
-    </div>
+    </div >
   )
 
 }

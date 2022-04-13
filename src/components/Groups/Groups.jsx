@@ -28,7 +28,7 @@ export default function Fridge() {
 
 
   return (
-    <>
+    <React.Fragment>
       <h1>Groups</h1>
       <p>needs displayname!!, {currentUser.displayName}</p>
       {console.log('groupList', groupList)}
@@ -39,7 +39,7 @@ export default function Fridge() {
           groupName={group.listName}
         />
       ))}
-    </>
+    </React.Fragment>
   )
 
 }

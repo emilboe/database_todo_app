@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 export default function ForgotPW() {
     const emailRef = useRef()
-    const {  currentUser, resetPassword } = useAuth()
+    const { currentUser, resetPassword } = useAuth()
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
@@ -28,30 +28,30 @@ export default function ForgotPW() {
     }
 
     return (
-        <>
-        <div className="loginContainer">
-        <div className="registerHeader">
-            <h1>Tilbakestill passord</h1>
-        </div>
-            <form onSubmit={handleSubmit}>
-
-                <div>{currentUser && "Du er logget inn som : " + currentUser.email}</div>
-                <br />
-                <div>
-                    <label>E-post</label><br />
-                    <input type="email" ref={emailRef} required />
+        <React.Fragment>
+            <div className="loginContainer">
+                <div className="registerHeader">
+                    <h1>Tilbakestill passord</h1>
                 </div>
+                <form onSubmit={handleSubmit}>
+
+                    <div>{currentUser && "Du er logget inn som : " + currentUser.email}</div>
+                    <br />
+                    <div>
+                        <label>E-post</label><br />
+                        <input type="email" ref={emailRef} required />
+                    </div>
+                    <br />
+                    <button className="greenBG" disabled={loading} type="submit">Tilbakestill passord</button>
+                    <div>{error ? error : ''}</div>
+                </form>
+                {message}
                 <br />
-                <button className="greenBG" disabled={loading} type="submit">Tilbakestill passord</button>
-                <div>{error ? error : ''}</div>
-            </form>
-            {message}
-            <br />
-            <div className='signupSection'>
-            <label>Gå tilbake til innlogging</label>
-                <Link to='/login'><button className="greenBorder">Logg inn</button></Link>
+                <div className='signupSection'>
+                    <label>Gå tilbake til innlogging</label>
+                    <Link to='/login'><button className="greenBorder">Logg inn</button></Link>
+                </div>
             </div>
-        </div>
-        </>
+        </React.Fragment>
     )
 }

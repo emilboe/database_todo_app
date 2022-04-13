@@ -15,15 +15,16 @@ export default function Signup() {
     async function handleSubmit(event) {
         event.preventDefault()
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            setError('passwords do not match')
+            setError('Passordene er ulike')
             return
         }
 
         setError('')
         setLoading(true)
-        const res = await signup(emailRef.current.value, passwordRef.current.value)
+        const res = await signup(emailRef.current.value, passwordRef.current.value, nameRef.current.value)
 
-        // Not a great way to handle error codes, but fine for now.
+        // Not a great way to handle error codes, but it's fine for now.
+        // Prints the error from firebase in a human readable way.
         setLoading(false)
         if (res.error) {
             setError(res.message.message.substring(10).replace('auth/', '').replace(/-/g, ' '))
@@ -40,10 +41,9 @@ export default function Signup() {
     // should probably be called before component loads, not in useEffect.
     useEffect(() => {
         redirectIfLoggedIn()
-    },[])
+    }, [])
 
     return (
-        <>
         <div className="loginContainer">
             <div className="registerHeader">
                 <h1>Registrer deg</h1>
@@ -72,7 +72,6 @@ export default function Signup() {
             <div className="signupSection">Har du allerede en bruker? <Link to="/login">
                 <button className="greenBorder">Logg inn</button></Link></div>
             <div>{currentUser && "you're already logged in as: " + currentUser.email}</div>
-            </div>
-        </>
+        </div>
     )
 }

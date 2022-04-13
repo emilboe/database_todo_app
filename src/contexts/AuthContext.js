@@ -13,13 +13,16 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  async function signup(email, password) {
+  async function signup(email, password, displayName) {
     try {
       const res = await auth.createUserWithEmailAndPassword(email, password)
+      updateUsername(displayName)
+      console.log('trying to update name', displayName)
+      
       db.collection('userData').doc(res.user.uid).collection('groupAccess').add({
         listName: 'personal'
       })
-      // this whole section might me unnecesarry as it is possible to access the doc id later.
+        // this whole section might me unnecesarry as it is possible to access the doc id later.
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);
           // surely it's possible to access docref while writing the the doc the firs time right?
