@@ -31,6 +31,45 @@ export default function Fridge() {
     fetchUserListID(currentUser.uid)
   }, [currentUser.uid])
 
+  //invitation: 
+  // const handleSubmitInvitation = async (event) => {
+  //   event.preventDefault()
+  //   console.log('array and name:', collaborators, collabName)
+  //   let found = false
+  //   if (!collabName) {
+  //     alert('no input...')
+  //     return
+  //   }
+
+  //   collaborators.forEach(el => {
+  //     if (el.collabName === collabName) {
+  //       alert('user is already a collaborator!')
+  //       found = true
+  //       return
+  //     }
+  //   })
+  //   if (!found) {
+  //     try {
+  //       console.log('sending data')
+  //       await db.collection('invitations').doc(collabName).collection('invites').add({
+  //         collabName,
+  //         groupID: currentUser.uid + group,
+  //         invitedBy: currentUser.displayName,
+  //         groupName: group
+  //       }, { merge: true })
+  //       // await db.collection('groups').doc(currentUser.uid + group).collection('collaborators').add({
+  //       //   collabName
+  //       // }, { merge: true })
+  //       alert('user invited!')
+  //     }
+  //     catch (err) {
+  //       console.log(err)
+  //     }
+  //     setTitle('')
+  //     return
+  //   }
+  // }
+
 
   return (
     <React.Fragment>

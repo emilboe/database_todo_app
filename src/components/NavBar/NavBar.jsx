@@ -43,13 +43,13 @@ export default function NavBar() {
         />
         <div className="navigation">
           <ul>
-            <li className="list" data-color="#3c40c6">
+            <li className="list active" data-color="#3c40c6">
               <NavLink to="/">
                 <span className="icon"><i className="far fa-list-ul"></i></span>
                 <span className="title">Handleliste</span>
               </NavLink>
             </li>
-            <li className="list active" data-color="#dc143c">
+            <li className="list" data-color="#dc143c">
               <NavLink to="/fridge">
                 <span className="icon"><i className="far fa-archive"></i></span>
                 <span className="title">Inventar</span>

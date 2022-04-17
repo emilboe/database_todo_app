@@ -19,7 +19,8 @@ import CurrentGroup from './CurrentGroup/CurrentGroup';
 
 export default function App() {
 
-  const [group, setGroup] = useState('personal')
+  const [groupID, setGroupID] = useState('')
+  console.log('groupID from App.jsx: ', groupID)
 
   return (
     <Router>
@@ -31,21 +32,22 @@ export default function App() {
             <Routes>
               <Route exact path='/' element={
                 <PrivateRoute>
-                  <CurrentGroup />
-                  <Handleliste />
+                  <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
+                  <Handleliste groupID={groupID} />
                   <NavBar />
                 </PrivateRoute>
               } />
               <Route exact path='/fridge' element={
                 <PrivateRoute>
-                  <CurrentGroup />
-                  <Fridge />
+                  <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
+                  <Fridge groupID={groupID} />
                   <NavBar />
                 </PrivateRoute>
               } />
               <Route exact path='/update-profile' element={
                 <PrivateRoute>
                   <UpdateProfile />
+                  <NavBar />
                 </PrivateRoute>
               } />
 

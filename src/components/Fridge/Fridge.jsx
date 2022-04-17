@@ -80,76 +80,9 @@ export default function Fridge() {
     else console.log('alert or maybe disable button first?')
   }
 
-  const handleSubmitInvitation = async (event) => {
-    event.preventDefault()
-    console.log('array and name:', collaborators, collabName)
-    let found = false
-    if (!collabName) {
-      alert('no input...')
-      return
-    }
-
-    collaborators.forEach(el => {
-      if (el.collabName === collabName) {
-        alert('user is already a collaborator!')
-        found = true
-        return
-      }
-    })
-    if (!found) {
-      try {
-        console.log('sending data')
-        await db.collection('invitations').doc(collabName).collection('invites').add({
-          collabName,
-          groupID: currentUser.uid + group,
-          invitedBy: currentUser.displayName,
-          groupName: group
-        }, { merge: true })
-        // await db.collection('groups').doc(currentUser.uid + group).collection('collaborators').add({
-        //   collabName
-        // }, { merge: true })
-        alert('user invited!')
-      }
-      catch (err) {
-        console.log(err)
-      }
-      setTitle('')
-      return
-    }
-
-  }
-
-
-
-  function handleLogout() {
-    logout()
-    navigate('/login')
-  }
-
   return (
     <React.Fragment>
-      <h1>Fridge</h1>
-      <p>Hello, {currentUser.displayName}</p>
-      <p>Current group: {group}</p>
-      <div className='collaborators'>
-        Collaborators:
-        {
-          collaborators.map(user => (
-            <p>{user.collabName}</p>
-          ))
-        }
-        <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
-        <form onSubmit={handleSubmitInvitation} className="addInput">
-          <input
-            type='email'
-            placeholder='Invite collaborator'
-            value={collabName}
-            onChange={(e) => setCollabName(e.target.value)}
-          ></input>
-          <button type="submit" className='green'>➕</button>
-        </form>
-      </div>
-      <br />
+      <h1>Inventar</h1>
       <form onSubmit={handleSubmit} className="addInput">
         <input
           type='text'
@@ -159,7 +92,6 @@ export default function Fridge() {
         ></input>
         <button type="submit" className='green'>➕</button>
       </form>
-      <br /><br />
       {
         todo.map(todo => (
           <Todo
