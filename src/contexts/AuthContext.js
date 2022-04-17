@@ -33,17 +33,6 @@ export function AuthProvider({ children }) {
       console.log("uid?: ", res.user.uid);
 
       res.user.updateProfile({ displayName })
-      // // should make these DB writes modular and async/ await as well
-      // db.collection('userData').doc(res.user.uid)({
-      //   bio: 'hey',
-
-      // })
-      // let firstListName = 'personal'
-      // db.collection('userData').doc(res.user.uid).collection('listAccess').add({
-      //   listName: firstListName,
-      //   listID: res.user.uid + firstListName,
-
-      // })
 
       return {
         error: false,

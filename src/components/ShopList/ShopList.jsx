@@ -1,15 +1,10 @@
-import React, { useEffect, useState, componentDidUpdate } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import React, { useState } from 'react';
 import { db } from '../../firebase';
 import Todo from '../TodoItem/TodoItem';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
-
-
 export default function ShopList(props) {
   const { groupID } = props
-  console.log('groupID from shoplist: ', groupID)
-  const { currentUser } = useAuth()
   const [title, setTitle] = useState('')
   const [prevGroupID, setPrevGroupID] = useState('')
   const [todo, setTodo] = useState([])
@@ -22,15 +17,10 @@ export default function ShopList(props) {
         todosArray.push({ ...doc.data(), id: doc.id })
       })
       setTodo(todosArray)
-      // console.log('todo in useefetct: ', todo)
     })
     return () => unsub()
   }
-  useEffect(() => {
 
-    console.log('effected')
-    // fetchUserListID(currentUser.uid)
-  }, [])
   if (groupID !== prevGroupID) {
     fetchList(groupID)
     setPrevGroupID(groupID)
@@ -50,7 +40,6 @@ export default function ShopList(props) {
     event.preventDefault()
 
     if (title !== '') {
-
       try {
         console.log('sending data to shopping list:', groupID)
         await db.collection('groups').doc(groupID).collection('list').add({
@@ -79,7 +68,6 @@ export default function ShopList(props) {
         ></input>
         <button type="submit" className='green'>➕</button>
       </form>
-      <br /><br />
       {
         todo.map(todo => (
           <Todo
