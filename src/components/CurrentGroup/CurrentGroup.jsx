@@ -22,8 +22,6 @@ export default function CurrentGroup(props) {
       })
       setGroupList(groupListArray)
     })
-    console.log('groupList :', groupList)
-    if (groupList[0]) setGroupID(groupList[0].id)
     return () => unsub()
 
   }
@@ -39,7 +37,10 @@ export default function CurrentGroup(props) {
   useEffect(() => {
     fetchGroupAccessList()
     if (groupID) fetchGroupName(groupID)
+    console.log('groupList :', groupList)
+    if (groupList[0]) setGroupID(groupList[0].id)
   }, [])
+  
 
   const handleChange = (event) => {
     setValue(event.target.value);
