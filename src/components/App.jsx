@@ -12,10 +12,10 @@ import UpdateProfile from './Profile/UpdateProfile';
 import Fridge from './Fridge/Fridge';
 import NavBar from './NavBar/NavBar';
 import Groups from '../components/Groups/Groups'
+import GroupDetail from '../components/GroupDetail/GroupDetail'
+import Invitations from '../components/Invitations/Invitations'
 import './globals.css'
 import CurrentGroup from './CurrentGroup/CurrentGroup';
-
-
 
 export default function App() {
 
@@ -60,6 +60,18 @@ export default function App() {
               <Route exact path='/groups' element={
                 <PrivateRoute>
                   <Groups />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route path='/groups/:groupID' element={
+                <PrivateRoute>
+                  <GroupDetail />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route exact path='/invitations' element={
+                <PrivateRoute>
+                  <Invitations />
                   <NavBar />
                 </PrivateRoute>
               } />

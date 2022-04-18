@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
           console.log("Document written with ID: ", docRef.id);
           // surely it's possible to access docref while writing the the doc the firs time right?
           db.collection('userData').doc(res.user.uid).collection('groupAccess').doc(docRef.id).update({
-            listID: docRef.id
+            id: docRef.id
           })
         })
 

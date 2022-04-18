@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
-import { query, onSnapshot } from 'firebase/firestore';
+import { query, onSnapshot, getDocs } from 'firebase/firestore';
 
 export default function CurrentGroup(props) {
   const { groupID, setGroupID } = props
@@ -12,18 +12,16 @@ export default function CurrentGroup(props) {
   const [value, setValue] = useState(groupID);
 
 
-  const fetchGroupAccessList = () => {
+  const fetchGroupAccessList = async () => {
     const q = query(db.collection('userData').doc(currentUser.uid).collection('groupAccess'))
-    const unsub = onSnapshot(q, (querySnapshot) => {
-
-      let groupListArray = []
-      querySnapshot.forEach((doc) => {
-        groupListArray.push({ ...doc.data(), id: doc.id })
-      })
-      setGroupList(groupListArray)
+    const querySnapshot = await getDocs(q)
+    let groupListArray = []
+    querySnapshot.forEach((doc) => {
+      groupListArray.push({ ...doc.data(), id: doc.id })
     })
-    return () => unsub()
-
+    setGroupList(groupListArray)
+    console.log('groupListArray', groupListArray)
+    setGroupID(groupListArray[0].id)
   }
 
   const fetchGroupName = (id) => {
@@ -40,7 +38,7 @@ export default function CurrentGroup(props) {
     console.log('groupList :', groupList)
     if (groupList[0]) setGroupID(groupList[0].id)
   }, [])
-  
+
 
   const handleChange = (event) => {
     setValue(event.target.value);
