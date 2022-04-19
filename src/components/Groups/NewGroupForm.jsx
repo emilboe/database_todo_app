@@ -20,11 +20,11 @@ export default function NewGroupForm(showForm) {
 
         if (groupNameRef !== '') {
             try {
-                console.log('sending data')
+                console.log('making new group in user group access')
                 await db.collection('userData').doc(currentUser.uid).collection('groupAccess').add({
                     groupName: groupNameRef.current.value
                 })
-                console.log('data sent')
+                console.log('new group access success')
                 showForm.showForm()
             }
             catch (err) {

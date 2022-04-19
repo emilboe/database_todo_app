@@ -12,14 +12,15 @@ import UpdateProfile from './Profile/UpdateProfile';
 import Fridge from './Fridge/Fridge';
 import NavBar from './NavBar/NavBar';
 import Groups from '../components/Groups/Groups'
+import GroupDetail from '../components/GroupDetail/GroupDetail'
+import Invitations from '../components/Invitations/Invitations'
 import './globals.css'
 import CurrentGroup from './CurrentGroup/CurrentGroup';
 
-
-
 export default function App() {
 
-  const [group, setGroup] = useState('personal')
+  const [groupID, setGroupID] = useState('')
+  console.log('groupID from App.jsx: ', groupID)
 
   return (
     <Router>
@@ -31,21 +32,22 @@ export default function App() {
             <Routes>
               <Route exact path='/' element={
                 <PrivateRoute>
-                  <CurrentGroup />
-                  <Handleliste />
+                  <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
+                  <Handleliste groupID={groupID} />
                   <NavBar />
                 </PrivateRoute>
               } />
               <Route exact path='/fridge' element={
                 <PrivateRoute>
-                  <CurrentGroup />
-                  <Fridge />
+                  <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
+                  <Fridge groupID={groupID} />
                   <NavBar />
                 </PrivateRoute>
               } />
               <Route exact path='/update-profile' element={
                 <PrivateRoute>
                   <UpdateProfile />
+                  <NavBar />
                 </PrivateRoute>
               } />
 
@@ -58,6 +60,18 @@ export default function App() {
               <Route exact path='/groups' element={
                 <PrivateRoute>
                   <Groups />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route path='/groups/:groupID' element={
+                <PrivateRoute>
+                  <GroupDetail />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route exact path='/invitations' element={
+                <PrivateRoute>
+                  <Invitations />
                   <NavBar />
                 </PrivateRoute>
               } />

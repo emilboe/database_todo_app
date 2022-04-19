@@ -18,14 +18,14 @@ export function AuthProvider({ children }) {
       const res = await auth.createUserWithEmailAndPassword(email, password)
 
       db.collection('userData').doc(res.user.uid).collection('groupAccess').add({
-        listName: 'personal'
+        groupName: 'personal'
       })
         // this whole section might me unnecesarry as it is possible to access the doc id later.
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);
           // surely it's possible to access docref while writing the the doc the firs time right?
           db.collection('userData').doc(res.user.uid).collection('groupAccess').doc(docRef.id).update({
-            listID: docRef.id
+            id: docRef.id
           })
         })
 
@@ -33,17 +33,6 @@ export function AuthProvider({ children }) {
       console.log("uid?: ", res.user.uid);
 
       res.user.updateProfile({ displayName })
-      // // should make these DB writes modular and async/ await as well
-      // db.collection('userData').doc(res.user.uid)({
-      //   bio: 'hey',
-
-      // })
-      // let firstListName = 'personal'
-      // db.collection('userData').doc(res.user.uid).collection('listAccess').add({
-      //   listName: firstListName,
-      //   listID: res.user.uid + firstListName,
-
-      // })
 
       return {
         error: false,

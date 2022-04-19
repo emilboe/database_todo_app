@@ -31,7 +31,6 @@ export default function Fridge() {
     fetchUserListID(currentUser.uid)
   }, [currentUser.uid])
 
-
   return (
     <React.Fragment>
       <h1>Groups</h1>
