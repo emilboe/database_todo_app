@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 import { query, onSnapshot, getDocs } from 'firebase/firestore';
+import './CurrentGroup.css'
 
 export default function CurrentGroup(props) {
   const { groupID, setGroupID } = props
@@ -47,9 +48,13 @@ export default function CurrentGroup(props) {
 
   return (
     <section className='currentGroup'>
-      <img src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'} className="pfp" />
+      <img
+        src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'}
+        alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'}
+        className="pfp"
+      />
 
-      <form>
+      <form className='groupSelect'>
         <select name="groups" id="groups" value={value} onChange={handleChange}>
           {
             groupList.map(todo => (
