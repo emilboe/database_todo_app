@@ -1,0 +1,13 @@
+.inviteCard {
+    background-color: white;
+    width: 50%;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+.green{
+    background-color: aquamarine;
+}
+.red{
+    background-color: var(--color-coral);
+}

@@ -5,7 +5,6 @@ import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore
 
 export default function Fridge(props) {
   const { groupID } = props
-  console.log('groupID in fridge:', groupID)
   const [title, setTitle] = useState('')
   const [prevGroupID, setPrevGroupID] = useState('')
   const [todo, setTodo] = useState([])
@@ -59,7 +58,7 @@ export default function Fridge(props) {
 
   return (
     <React.Fragment>
-      <h1>Fridge</h1>
+      <h1>Kjøleskap</h1>
       <form onSubmit={handleSubmit} className="addInput">
         <input
           type='text'

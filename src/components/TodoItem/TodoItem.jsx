@@ -22,7 +22,6 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit })
                 onBlur={()=> handleEdit(todo, newTitle)}
                 onKeyPress={(event) => function search(ele) {
                     var key = event.key || event.keyCode;
-                    console.log(event)
                     if(key === 13) {
                         alert(ele.value);        
                     }

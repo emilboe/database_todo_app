@@ -28,6 +28,10 @@ export default function Invitations() {
     const capitalize = str => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
+    const handleInvite = (bool, id) => {
+        if (bool) console.log('accepted', id)
+        else if (!bool) console.log('declined', id)
+    }
     return (
         < div className='profileContainer' >
             <h1> Invitasjoner </h1>
@@ -37,8 +41,8 @@ export default function Invitations() {
                     <div className='inviteCard' key={invite.id}>
                         <p>Invited by: {invite.invitedBy}</p>
                         <p>Invited to: {invite.groupName}</p>
-                        <button className="green">Accept</button>
-                        <button className="red">Decline</button>
+                        <button className="green" onClick={() => handleInvite(true, invite.id)}>Accept</button>
+                        <button className="red" onClick={() => handleInvite(false, invite.id)}>Decline</button>
                     </div>
                 ))
             }
