@@ -6,7 +6,6 @@ import './CurrentGroup.css'
 
 export default function CurrentGroup(props) {
   const { groupID, setGroupID } = props
-  console.log('groupID from currentGroup: ', groupID)
   const { currentUser } = useAuth()
   const [groupList, setGroupList] = useState([])
   const [groupName, setGroupName] = useState('')
@@ -21,7 +20,6 @@ export default function CurrentGroup(props) {
       groupListArray.push({ ...doc.data(), id: doc.id })
     })
     setGroupList(groupListArray)
-    console.log('groupListArray', groupListArray)
     setGroupID(groupListArray[0].id)
   }
 
@@ -36,7 +34,6 @@ export default function CurrentGroup(props) {
   useEffect(() => {
     fetchGroupAccessList()
     if (groupID) fetchGroupName(groupID)
-    console.log('groupList :', groupList)
     if (groupList[0]) setGroupID(groupList[0].id)
   }, [])
 

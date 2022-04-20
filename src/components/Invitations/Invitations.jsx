@@ -16,7 +16,6 @@ export default function Invitations() {
             querySnapshot.forEach((doc) => {
                 collabArray.push({ ...doc.data(), id: doc.id })
             })
-            console.log('fetched', collabArray)
             setInvitations(collabArray)
         })
         return () => unsub()

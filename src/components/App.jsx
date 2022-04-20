@@ -20,7 +20,6 @@ import CurrentGroup from './CurrentGroup/CurrentGroup';
 export default function App() {
 
   const [groupID, setGroupID] = useState('')
-  console.log('groupID from App.jsx: ', groupID)
 
   return (
     <Router>
