@@ -28,9 +28,29 @@ export default function Invitations() {
     const capitalize = str => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
-    const handleInvite = (bool, id) => {
-        if (bool) console.log('accepted', id)
-        else if (!bool) console.log('declined', id)
+    const handleInvite = async (bool, id, groupID, groupName) => {
+        if (bool) {
+            console.log('accepting', groupID)
+            try {
+                console.log('making new group in user group access')
+                await db.collection('userData').doc(currentUser.uid).collection('groupAccess').doc(groupID).set({
+                    groupName: groupName,
+                    id: groupID
+                })
+                    .then(
+                        await db.collection('invitations').doc(currentUser.email).collection('invites').doc(id).delete()
+                    )
+                console.log('new group access success')
+                alert('invite accepted!')
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        else if (!bool) {
+            await db.collection('invitations').doc(currentUser.email).collection('invites').doc(id).delete()
+            alert('invitation declined')
+        }
     }
     return (
         < div className='profileContainer' >
@@ -39,10 +59,13 @@ export default function Invitations() {
             {
                 invitations.map(invite => (
                     <div className='inviteCard' key={invite.id}>
-                        <p>Invited by: {invite.invitedBy}</p>
-                        <p>Invited to: {invite.groupName}</p>
-                        <button className="green" onClick={() => handleInvite(true, invite.id)}>Accept</button>
-                        <button className="red" onClick={() => handleInvite(false, invite.id)}>Decline</button>
+                        {console.log(invite)}
+                        <h2>Invitert av:</h2>
+                        <p> {invite.invitedBy}</p>
+                        <h2>Invitert til: </h2>
+                        <p>{invite.groupName}</p>
+                        <button className="green" onClick={() => handleInvite(true, invite.id, invite.groupID, invite.groupName)}>Accept</button>
+                        <button className="red" onClick={() => handleInvite(false, invite.id, invite.groupID, invite.groupName)}>Decline</button>
                     </div>
                 ))
             }

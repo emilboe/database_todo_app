@@ -1,84 +1,88 @@
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
+import { query, onSnapshot } from 'firebase/firestore';
 import './NavBar.css'
 
 
 
 export default function NavBar() {
+  const { currentUser } = useAuth()
+  const [invitations, setInvitations] = useState([])
+  const location = useLocation()
 
   useEffect(() => {
-    setNavBar()
+    fetchInvitations(currentUser.email)
   }, [])
 
-  const setNavBar = () => {
+  const fetchInvitations = (email) => {
+    const q = query(db.collection('invitations').doc(email).collection('invites'))
+    const unsub = onSnapshot(q, (querySnapshot) => {
 
-    let list = document.querySelectorAll(".list");
-    for (let i = 0; i < list.length; i++) {
-      list[i].onclick = (e) => {
-        let j = 0;
-        while (j < list.length) {
-          list[j++].className = "list";
-        }
-        list[i].className = "list active whiteText";
-      };
-    }
-
-    list.forEach((elements) => {
-      elements.addEventListener("click", function (event) {
-        let bg = document.querySelector("body");
-        let color = event.target.getAttribute("data-color");
-        bg.style.backgroundColor = color;
-      });
-    });
+      let collabArray = []
+      querySnapshot.forEach((doc) => {
+        collabArray.push({ ...doc.data(), id: doc.id })
+      })
+      setInvitations(collabArray)
+    })
+    return () => unsub()
   }
 
+  const activeTab = (location, path) => {
+    if (location.pathname === path) {
+      return {
+        backgroundColor: 'var(--color-pink)',
+        color: "var(--color-moss)"
+      };
+    }
+  };
+
   return (
-    <>
-      <nav>
-        <link
-          rel="stylesheet"
-          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossOrigin="anonymous"
-        />
-        <div className="navigation">
-          <ul>
-            <li className="list active" data-color="#3c40c6">
-              <NavLink to="/">
-                <span className="icon"><i className="far fa-list-ul"></i></span>
-                <span className="title">Handleliste</span>
-              </NavLink>
-            </li>
-            <li className="list" data-color="#dc143c">
-              <NavLink to="/fridge">
-                <span className="icon"><i className="far fa-archive"></i></span>
-                <span className="title">Inventar</span>
-              </NavLink>
-            </li>
-            <li className="list" data-color="#05c46b">
-              <NavLink to="/groups">
-                <span className="icon"><i className="far fa-users"></i></span>
-                <span className="title">Grupper</span>
-              </NavLink>
-            </li>
-            <li className="list" data-color="#ffa801">
-              <NavLink to="/profile">
-                <span className="icon"><i className="far fa-user"></i></span>
-                <span className="title">Profil</span>
-              </NavLink>
-            </li>
-            <div className="indicator"></div>
-
-            {/*
-            
-            // uncomment this to try the moving button in the NavBar 
-            <div className="button"></div> 
-
-            */}
-          </ul>
-        </div>
+    <React.Fragment>
+      <link
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossOrigin="anonymous"
+      />
+      <nav className="navigation">
+        <NavLink
+          to="/"
+          style={activeTab(location, "/")}
+          exact
+        >
+          <span className="icon"><i className="far fa-list-ul"></i></span>
+          <span className="title">Handleliste</span>
+        </NavLink>
+        <NavLink
+          to="/fridge"
+          style={activeTab(location, "/fridge")}
+          exact
+        >
+          <span className="icon"><i class="far fa-door-closed"></i></span>
+          <span className="title">Kjøleskap</span>
+        </NavLink>
+        <NavLink
+          to="/groups"
+          style={activeTab(location, "/groups")}
+          exact
+        >
+          <span className="icon"><i className="far fa-users"></i></span>
+          <span className="title">Grupper</span>
+        </NavLink>
+        <NavLink
+          to="/profile"
+          style={activeTab(location, "/profile")}
+          exact
+        >
+          <span className='notification'>{invitations[0] && invitations.length}</span>
+          <span className="icon"><i className="far fa-user"></i></span>
+          <span className="title">Profil</span>
+        </NavLink>
+        <div className="indicator"></div>
       </nav>
-    </>
+    </React.Fragment>
   )
 
 }

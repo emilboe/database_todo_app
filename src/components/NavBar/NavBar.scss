@@ -14,34 +14,36 @@
   background-color: white;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
 }
-
-.navigation ul {
-  position: absolute;
-  top: 0;
+.selected{
+  background-color: var(--color-coral);
+}
+.navigation {
+  position: fixed;
+  bottom: 0;
   left: 0;
   width: 100%;
   display: flex;
 }
-.navigation ul li {
+.navigation a {
   position: relative;
   list-style: none;
   width: 25%;
   height: 70px;
   z-index: 1;
 }
-.navigation ul li a {
+.navigation a {
   position: relative;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   text-align: center;
   color: #333;
   font-weight: 300;
-  font-size:80%;
+  font-size: 80%;
   text-decoration: none;
 }
-.navigation ul li a .icon {
+.navigation a .icon {
   position: relative;
   display: block;
   padding-top: 15px;
@@ -49,133 +51,18 @@
   text-align: center;
   transition: 0.5s;
 }
-.navigation ul li.active a .icon {
-  color: var(--color-moss);
-}
-.navigation ul li a .icon i {
+.navigation a .icon i {
   font-size: 20px;
 }
-.navigation ul li a .title{
-  text-decoration: none;
+.title {
+  color: var(--color-moss);
 }
-.navigation ul .indicator {
+.notification {
+  background-color: var(--color-coral);
+  transform: translate(10px, 4px);
   position: absolute;
-  left: 0;
-  width: 25%;
-  height: 70px;
-  transition: all 0.5s;
-}
-.navigation ul .button {
-  position: absolute;
-  left: 0;
-  width: 25%;
-  height: 70px;
-  transition: all 0.5s;
-}
-.navigation ul .indicator::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #333;
-  width: 25vw;
-  height: 71px;
-  transition: 0.5s;
-}
-.whiteText a .title{
-    color: var(--color-moss);
-
-}
-.button{
-  cursor: pointer;
-  color: rgb(50,50,50);
-}
-.navigation ul .button::before {
-  content: "+";
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(63px, -75%);
-  background-color: #333;
-  width: 50px;
-  height: 50px;
+  width: 15px;
+  font-size: 10px;
+  height: 15px;
   border-radius: 50%;
-  transition: all 0.5s;
-  display: grid;
-  place-items:center;
-  font-size:200%;
-  font-weight:400;
-  outline: 5px solid var(--color-pink);
-  
 }
-.navigation ul li:nth-child(1).active ~ {
-  .indicator,
-  .button {
-    transform: translateX(0%);
-  }
-  .button::before {
-  background-color: LightCoral;
-}
-  .indicator::before {
-  background-color: var(--color-pink);
-}
-}
-.navigation ul li:nth-child(2).active ~ {
-  
-  .indicator,
-  .button {
-    transform: translateX(25vw);
-  }
-  .button::before {
-  background-color: LightCoral;
-    content: "🤔";
-}
-  .indicator::before {
-  background-color: var(--color-pink);
-}
-}
-.navigation ul li:nth-child(3).active ~ {
-  .indicator,
-  .button {
-    transform: translateX(50vw);
-  }
-  .button::before {
-  background-color: LightCoral;
-    content: "L";
-}
-  .indicator::before {
-  background-color: var(--color-pink);
-}
-}
-.navigation ul li:nth-child(4).active ~ {
-  .indicator{
-    transform: translateX(75vw);
-  }
-  .button {
-    transform: translateX(calc(87.5px * 2));
-  }
-  .button::before {
-  background-color: LightCoral;
-    content: "?";
-}
-  .indicator::before {
-  background-color: var(--color-pink);
-}
-}
-
-// .navigation ul li:nth-child(1).active ~ .indicator::before {
-//   background-color: LightPink;
-// }
-// .navigation ul li:nth-child(2).active ~ .indicator::before {
-//   background-color: #3c40c6;
-// }
-// .navigation ul li:nth-child(3).active ~ .indicator::before {
-//   background-color: #05c46b;
-// }
-// .navigation ul li:nth-child(4).active ~ .indicator::before {
-//   background-color: #0fbcf9;
-// }
-// .navigation ul li:nth-child(5).active ~ .indicator::before {
-//   background-color: #ffa801;
-// }

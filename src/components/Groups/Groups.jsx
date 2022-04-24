@@ -34,7 +34,6 @@ export default function Fridge() {
   return (
     <React.Fragment>
       <h1>Groups</h1>
-      {console.log('groupList', groupList)}
       {groupList.map(group => (
         <Group
           key={group.id}

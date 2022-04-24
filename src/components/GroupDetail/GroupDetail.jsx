@@ -9,7 +9,6 @@ export default function GroupDetail() {
     const [formShow, setformShow] = useState(false)
 
     const { groupID } = useParams()
-    console.log('id from params:', groupID)
 
 
     const showForm = () => {
@@ -25,7 +24,7 @@ export default function GroupDetail() {
             <img src={photoURL ? photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={photoURL ? displayName + ' profile picture' : 'default profile picture'} className="ProfilePFP" />
 
             {formShow && <InviteCollaboratorForm showForm={showForm} />}
-            <button className='grassBG' onClick={() => showForm()}>+</button>
+            <button className='grassBG' onClick={() => showForm()}>Legg til bruker +</button>
         </div >
     )
 
