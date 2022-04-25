@@ -58,7 +58,6 @@ export default function ShopList(props) {
 
   return (
     <React.Fragment>
-      <h1>Handleliste</h1>
       <form onSubmit={handleSubmit} className="addInput">
         <input
           type='text'

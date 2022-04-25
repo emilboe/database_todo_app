@@ -73,10 +73,6 @@
   font-size: 20px;
 }
 
-.title {
-  color: var(--color-moss);
-}
-
 .notification {
   background-color: var(--color-coral);
   -webkit-transform: translate(10px, 4px);

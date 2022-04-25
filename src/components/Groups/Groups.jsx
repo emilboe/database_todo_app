@@ -33,7 +33,7 @@ export default function Fridge() {
 
   return (
     <React.Fragment>
-      <h1>Groups</h1>
+      <h1>Grupper</h1>
       {groupList.map(group => (
         <Group
           key={group.id}
@@ -42,7 +42,7 @@ export default function Fridge() {
         />
       ))}
       {formShow && <NewGroupForm showForm={showForm} />}
-      <button className='grassBG' onClick={() => showForm()}>+</button>
+      <button className='grassBG' onClick={() => showForm()}>Lag ny gruppe +</button>
     </React.Fragment>
   )
 

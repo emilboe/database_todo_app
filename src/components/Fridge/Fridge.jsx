@@ -58,7 +58,6 @@ export default function Fridge(props) {
 
   return (
     <React.Fragment>
-      <h1>Kjøleskap</h1>
       <form onSubmit={handleSubmit} className="addInput">
         <input
           type='text'
