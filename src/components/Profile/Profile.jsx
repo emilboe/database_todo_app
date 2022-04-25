@@ -45,8 +45,11 @@ export default function Profile() {
 
       <div className='profileOptions'>
         <Link to="/update-profile"><button className="baseWhite">Oppdater Profil</button></Link>
-        <Link to="/invitations"><button className="baseWhite">Invitasjoner
-        <span className='profileNotification'>{invitations[0] && invitations.length}</span></button></Link>
+        <Link to="/invitations">
+          <button className="baseWhite">
+            Invitasjoner
+            {invitations[0] && <span className='notification'> {invitations.length}</span>}
+          </button></Link>
         <button className="coral" onClick={handleLogout}>Logg ut</button>
       </div>
     </div >

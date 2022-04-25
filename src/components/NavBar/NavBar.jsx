@@ -76,7 +76,7 @@ export default function NavBar() {
           style={activeTab(location, "/profile")}
           exact
         >
-          <span className='notification'>{invitations[0] && invitations.length}</span>
+          {invitations[0] && <span className='notification'> {invitations.length}</span>}
           <span className="icon"><i className="far fa-user"></i></span>
           <span className="title">Profil</span>
         </NavLink>

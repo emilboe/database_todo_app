@@ -45,11 +45,12 @@ export default function CurrentGroup(props) {
 
   return (
     <section className='currentGroup'>
-      <img
+      
+      {/* <img
         src={currentUser.photoURL ? currentUser.photoURL : 'https://i.imgur.com/DvtKeuk.png'}
         alt={currentUser.photoURL ? currentUser.displayName + ' profile picture' : 'default profile picture'}
         className="pfp"
-      />
+      /> */}
 
       <form className='groupSelect'>
         <select name="groups" id="groups" value={value} onChange={handleChange}>
