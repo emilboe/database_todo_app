@@ -12,6 +12,7 @@
     Bachelor group project to reduce food waste.
     <br />
     Share shopping lists and inventory management with all your friends and family!
+    <br />
     <a href="https://hamle.netlify.app/"><strong>App currently hosted on netlify »</strong></a>
     <br />
   </p>
