@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './TodoItem.css';
 
 export default function Todo({ todo, toggleComplete, handleDelete, handleEdit }) {
     const [newTitle, setNewTitle] = useState(todo.title)
@@ -13,7 +14,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit })
 
     return (
         <div className='todoItems'>
-            <button className='green' onClick={() => toggleComplete(todo)}>✔️</button>
+            <input className="itemCheckbox" type="checkbox" onClick={() => toggleComplete(todo)}/>
             <input
                 style={{ textDecoration: todo.completed && "line-through" }}
                 type='text'
@@ -32,7 +33,9 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit })
 
                 <button className='purp' onClick={() => handleEdit(todo, newTitle)}>Save</button> 
             */}
-            <button className='red' onClick={() => handleDelete(todo.id)}>🗑️</button>
+            {/* <button className='red' onClick={() => handleDelete(todo.id)}>🗑️</button> 
+            Skjuler det her da det skal legges inn sammen med flytt til inventar-knappen. 
+            */}
         </div>
     )
 }

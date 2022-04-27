@@ -4,6 +4,7 @@ import { db } from '../../firebase';
 import Group from '../GroupItem/GroupItem';
 import NewGroupForm from './NewGroupForm';
 import { query, onSnapshot } from 'firebase/firestore';
+import './Groups.css';
 
 
 
@@ -33,16 +34,17 @@ export default function Fridge() {
 
   return (
     <React.Fragment>
-      <h1>Grupper</h1>
-      {groupList.map(group => (
-        <Group
-          key={group.id}
-          groupID={group.id}
-          groupName={group.groupName}
-        />
-      ))}
-      {formShow && <NewGroupForm showForm={showForm} />}
-      <button className='grassBG' onClick={() => showForm()}>Lag ny gruppe +</button>
+      <main className="groupsMain">
+        {groupList.map(group => (
+          <Group
+            key={group.id}
+            groupID={group.id}
+            groupName={group.groupName}
+          />
+        ))}
+        {formShow && <NewGroupForm showForm={showForm} />}
+        <button className='greenBG addGroupButton' onClick={() => showForm()}> + Lag ny gruppe</button>
+      </main>
     </React.Fragment>
   )
 

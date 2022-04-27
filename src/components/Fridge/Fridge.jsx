@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { db } from '../../firebase';
 import Todo from '../TodoItem/TodoItem';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import './Fridge.css';
 
 export default function Fridge(props) {
   const { groupID } = props
@@ -58,26 +59,27 @@ export default function Fridge(props) {
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit} className="addInput">
-        <input
-          type='text'
-          placeholder='Legg til'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <button type="submit" className='green'>➕</button>
-      </form>
-      {
-        todo.map(todo => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            toggleComplete={toggleComplete}
-          />
-        ))
-      }
+      <main className="fridgeMain">
+        <form onSubmit={handleSubmit} className="addInput">
+          <input
+            type='text'
+            placeholder='Legg til'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
+        </form>
+        {
+          todo.map(todo => (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              toggleComplete={toggleComplete}
+            />
+          ))
+        }
+      </main>
     </React.Fragment>
   )
 

@@ -24,7 +24,7 @@
     --color-moss: #005C66;
     --color-grass: #60AB9A;
     --color-pinkOffset: rgba(251, 220, 226, 0.3);
-    --color-coral: LightCoral;
+    --color-coral: #FF9FB2;
     --color-dark: rgb(50, 50, 50);
     --color-light: rgb(240, 240, 240);
     --color-grey: #d3d3d3;
@@ -102,18 +102,6 @@ input[type]:focus {
     outline: none;
     box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
     border: 2px var(--color-pink) solid;
-}
-
-.todoItems {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 0.5rem;
-}
-
-.addInput {
-    display: flex;
-    gap: 0.6rem;
 }
 
 .pfp {
