@@ -43,16 +43,21 @@ export default function App() {
                   <NavBar />
                 </PrivateRoute>
               } />
-              <Route exact path='/update-profile' element={
+              <Route exact path='/profile' element={
+                <PrivateRoute>
+                  <Profile />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route exact path='/profile/update-profile' element={
                 <PrivateRoute>
                   <UpdateProfile />
                   <NavBar />
                 </PrivateRoute>
               } />
-
-              <Route exact path='/profile' element={
+              <Route exact path='/profile/invitations' element={
                 <PrivateRoute>
-                  <Profile />
+                  <Invitations />
                   <NavBar />
                 </PrivateRoute>
               } />
@@ -65,12 +70,6 @@ export default function App() {
               <Route path='/groups/:groupID' element={
                 <PrivateRoute>
                   <GroupDetail />
-                  <NavBar />
-                </PrivateRoute>
-              } />
-              <Route exact path='/invitations' element={
-                <PrivateRoute>
-                  <Invitations />
                   <NavBar />
                 </PrivateRoute>
               } />

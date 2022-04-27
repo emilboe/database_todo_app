@@ -57,6 +57,7 @@ export default function Invitations() {
             <h1> Invitasjoner </h1>
 
             {
+                invitations[0] ? 
                 invitations.map(invite => (
                     <div className='inviteCard' key={invite.id}>
                         {console.log(invite)}
@@ -68,6 +69,8 @@ export default function Invitations() {
                         <button className="red" onClick={() => handleInvite(false, invite.id, invite.groupID, invite.groupName)}>Avslå</button>
                     </div>
                 ))
+                :
+                'ingen invitasjoner...'
             }
         </div >
     )

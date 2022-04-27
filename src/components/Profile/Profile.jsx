@@ -44,8 +44,8 @@ export default function Profile() {
       <h2 className='otoma'>{displayName ? capitalize(displayName) : 'username'}</h2>
 
       <div className='profileOptions'>
-        <Link to="/update-profile"><button className="baseWhite">Oppdater Profil</button></Link>
-        <Link to="/invitations">
+        <Link to="update-profile"><button className="baseWhite">Oppdater Profil</button></Link>
+        <Link to="invitations">
           <button className="baseWhite">
             Invitasjoner
             {invitations[0] && <span className='notification'> {invitations.length}</span>}
