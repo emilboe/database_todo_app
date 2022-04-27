@@ -14,17 +14,17 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit })
 
     return (
         <div className='todoItems'>
-            <input className="itemCheckbox" type="checkbox" onClick={() => toggleComplete(todo)}/>
+            <input className="itemCheckbox" checked={todo.completed} onChange={handleChange} type="checkbox" onClick={() => toggleComplete(todo)} />
             <input
                 style={{ textDecoration: todo.completed && "line-through" }}
                 type='text'
                 value={todo.title === '' ? newTitle : todo.title}
                 onChange={handleChange}
-                onBlur={()=> handleEdit(todo, newTitle)}
+                onBlur={() => handleEdit(todo, newTitle)}
                 onKeyPress={(event) => function search(ele) {
                     var key = event.key || event.keyCode;
-                    if(key === 13) {
-                        alert(ele.value);        
+                    if (key === 13) {
+                        alert(ele.value);
                     }
                 }}
             />
@@ -33,9 +33,9 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit })
 
                 <button className='purp' onClick={() => handleEdit(todo, newTitle)}>Save</button> 
             */}
-            {/* <button className='red' onClick={() => handleDelete(todo.id)}>🗑️</button> 
-            Skjuler det her da det skal legges inn sammen med flytt til inventar-knappen. 
-            */}
+            {/* <button className='red' onClick={() => handleDelete(todo.id)}>🗑️</button> */}
+            {/* Skjuler det her da det skal legges inn sammen med flytt til inventar-knappen.  */}
+
         </div>
     )
 }
