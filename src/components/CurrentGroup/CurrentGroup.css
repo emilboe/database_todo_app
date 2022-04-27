@@ -19,6 +19,7 @@
 
 #groups {
     border: none;
+    width:70%;
     font-family: var(--headings-font);
     font-size: 1.5rem;
     padding-right: 1rem;

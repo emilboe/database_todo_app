@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { db } from '../../firebase';
 import Todo from '../TodoItem/TodoItem';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import './ShopList.css';
+import '../ShopList/ShopList.css';
 
 export default function ShopList(props) {
   const { groupID } = props

@@ -20,6 +20,11 @@
     background-color: var(--color-light);
 }
 
+.popupContent form button{
+    width:45%;
+    margin: 5px;
+}
+
 .groupsMain{
     display:flex;
     flex-direction: column;

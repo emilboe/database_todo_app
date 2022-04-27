@@ -4,7 +4,7 @@ import { db } from '../../firebase';
 import Group from '../GroupItem/GroupItem';
 import NewGroupForm from './NewGroupForm';
 import { query, onSnapshot } from 'firebase/firestore';
-import './Groups.css';
+import '../GroupDetail/Groups.css';
 
 
 

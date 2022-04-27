@@ -24,7 +24,7 @@ export default function GroupDetail() {
             <img src={photoURL ? photoURL : 'https://i.imgur.com/DvtKeuk.png'} alt={photoURL ? displayName + ' profile picture' : 'default profile picture'} className="ProfilePFP" />
 
             {formShow && <InviteCollaboratorForm showForm={showForm} />}
-            <button className='grassBG' onClick={() => showForm()}>Legg til bruker +</button>
+            <button className='greenBG' onClick={() => showForm()}>+ Legg til bruker</button>
         </div >
     )
 
