@@ -30,7 +30,7 @@ export default function NavBar() {
   }
 
   const activeTab = (location, path) => {
-    if (location.pathname === path) {
+    if (location.pathname.includes(path)) {
       return {
         backgroundColor: 'var(--color-pink)',
         color: "var(--color-moss)"
@@ -48,8 +48,8 @@ export default function NavBar() {
       />
       <nav className="navigation">
         <NavLink
-          to="/"
-          style={activeTab(location, "/")}
+          to="/shoplist"
+          style={activeTab(location, "/shoplist")}
           exact
         >
           <span className="icon"><i className="far fa-list-ul"></i></span>

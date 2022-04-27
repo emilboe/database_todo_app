@@ -119,7 +119,7 @@ export default function UpdateProfile() {
                 <div>{error ? error : ''}</div>
                 <div>{message ? message : ''}</div>
             </form>
-            <Link to="/"><button>Cancel</button></Link>
+            <Link to="/profile"><button>Cancel</button></Link>
         </React.Fragment>
     )
 }

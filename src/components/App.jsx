@@ -29,7 +29,7 @@ export default function App() {
           <div className="globalBox">
             <link rel="manifest" href="../build/manifest.json" />
             <Routes>
-              <Route exact path='/' element={
+              <Route exact path='/shoplist' element={
                 <PrivateRoute>
                   <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
                   <Handleliste groupID={groupID} />
