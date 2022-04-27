@@ -29,7 +29,7 @@ export default function App() {
           <div className="globalBox">
             <link rel="manifest" href="../build/manifest.json" />
             <Routes>
-              <Route exact path='/' element={
+              <Route exact path='/shoplist' element={
                 <PrivateRoute>
                   <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
                   <Handleliste groupID={groupID} />
@@ -43,16 +43,21 @@ export default function App() {
                   <NavBar />
                 </PrivateRoute>
               } />
-              <Route exact path='/update-profile' element={
+              <Route exact path='/profile' element={
+                <PrivateRoute>
+                  <Profile />
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              <Route exact path='/profile/update-profile' element={
                 <PrivateRoute>
                   <UpdateProfile />
                   <NavBar />
                 </PrivateRoute>
               } />
-
-              <Route exact path='/profile' element={
+              <Route exact path='/profile/invitations' element={
                 <PrivateRoute>
-                  <Profile />
+                  <Invitations />
                   <NavBar />
                 </PrivateRoute>
               } />
@@ -68,16 +73,11 @@ export default function App() {
                   <NavBar />
                 </PrivateRoute>
               } />
-              <Route exact path='/invitations' element={
-                <PrivateRoute>
-                  <Invitations />
-                  <NavBar />
-                </PrivateRoute>
-              } />
 
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPW />} />
+              <Route exact path="/" element={<Login />} />
               <Route path="/*" element={<Lost />} />
             </Routes>
           </div>

@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
       const res = await auth.createUserWithEmailAndPassword(email, password)
 
       db.collection('userData').doc(res.user.uid).collection('groupAccess').add({
-        groupName: 'personal'
+        groupName: 'personlig'
       })
         // this whole section might me unnecesarry as it is possible to access the doc id later.
         .then(function (docRef) {

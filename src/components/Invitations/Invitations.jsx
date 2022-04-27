@@ -25,12 +25,9 @@ export default function Invitations() {
         fetchInvitations(currentUser.email)
     }, [currentUser.email])
 
-    const capitalize = str => {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
     const handleInvite = async (bool, id, groupID, groupName) => {
         if (bool) {
-            console.log('accepting', groupID)
+            // console.log('accepting', groupID)
             try {
                 console.log('making new group in user group access')
                 await db.collection('userData').doc(currentUser.uid).collection('groupAccess').doc(groupID).set({
@@ -57,9 +54,9 @@ export default function Invitations() {
             <h1> Invitasjoner </h1>
 
             {
+                invitations[0] ? 
                 invitations.map(invite => (
                     <div className='inviteCard' key={invite.id}>
-                        {console.log(invite)}
                         <h2>Invitert av:</h2>
                         <p> {invite.invitedBy}</p>
                         <h2>Invitert til: </h2>
@@ -68,6 +65,8 @@ export default function Invitations() {
                         <button className="red" onClick={() => handleInvite(false, invite.id, invite.groupID, invite.groupName)}>Avslå</button>
                     </div>
                 ))
+                :
+                'ingen invitasjoner...'
             }
         </div >
     )

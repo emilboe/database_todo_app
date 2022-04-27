@@ -27,7 +27,7 @@ export default function Signup() {
         // Not a great way to handle error codes, but it's fine for now.
         // Prints the error from firebase in a human readable way.
         if (res.error) setError(res.message.message.substring(10).replace('auth/', '').replace(/-/g, ' '))
-        else navigate('/')
+        else navigate('/profile')
     }
 
     const redirectIfLoggedIn = () => {
