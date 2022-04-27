@@ -69,15 +69,21 @@ export default function ShopList(props) {
           ></input>
         </form>
         {
-          todo.map(todo => (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-              toggleComplete={toggleComplete}
-            />
-          ))
+          todo[0] ?
+            todo.map(todo => (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+                toggleComplete={toggleComplete}
+              />
+            ))
+            :
+            <>
+              <img alt="" src={'/questionable.png'}/>
+              'handlelista di er tom...'
+            </>
         }
       </main>
     </React.Fragment>
