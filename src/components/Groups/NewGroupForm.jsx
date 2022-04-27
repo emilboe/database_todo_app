@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import './Groups.css'
+import '../GroupDetail/Groups.css'
 
 export default function NewGroupForm(showForm) {
     const { currentUser } = useAuth()
@@ -37,7 +37,7 @@ export default function NewGroupForm(showForm) {
     return (
         <div className='popupForm'>
             <div className='popupContent'>
-                <h1>Legg til ny Gruppe</h1>
+                <h1>Legg til ny gruppe</h1>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Gruppenavn</label>
@@ -59,9 +59,10 @@ export default function NewGroupForm(showForm) {
                     <div>{error ? error : ''}</div>
                     <div>{message ? message : ''}</div>
 
-                    <button className="grassBG" type="submit">Legg til</button>
+                    <button className="greenBG" type="submit">Legg til</button>
+                    <button className="greenBorder" onClick={() => showForm.showForm()}>Avbryt</button>
                 </form>
-                <button onClick={() => showForm.showForm()}>Avbryt</button>
+                
 
             </div>
         </div>
