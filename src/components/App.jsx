@@ -77,6 +77,7 @@ export default function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPW />} />
+              <Route exact path="/" element={<Login />} />
               <Route path="/*" element={<Lost />} />
             </Routes>
           </div>

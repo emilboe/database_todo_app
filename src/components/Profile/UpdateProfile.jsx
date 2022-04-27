@@ -121,7 +121,7 @@ export default function UpdateProfile() {
                     <div>{error ? error : ''}</div>
                     <div>{message ? message : ''}</div>
                 </form>
-                <Link to="/"><button className="greenBorder">Avbryt</button></Link>
+                <Link to="/profile"><button className="greenBorder">Avbryt</button></Link>
             </main>
         </React.Fragment>
     )

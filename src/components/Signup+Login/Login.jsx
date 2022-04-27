@@ -31,7 +31,7 @@ export default function Login() {
     }
 
     const redirectIfLoggedIn = () => {
-        currentUser && navigate('/')
+        currentUser && navigate('/shoplist')
     }
     useEffect(() => {
         redirectIfLoggedIn()
