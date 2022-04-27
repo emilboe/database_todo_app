@@ -50,7 +50,7 @@ export default function Profile() {
             Invitasjoner
             {invitations[0] && <span className='notification'> {invitations.length}</span>}
           </button></Link>
-        <button className="coral" onClick={handleLogout}>Logg ut</button>
+        <button className="greenBG logOutButton" onClick={handleLogout}>Logg ut</button>
       </div>
     </div >
   )
