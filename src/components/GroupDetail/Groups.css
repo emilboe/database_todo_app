@@ -19,3 +19,15 @@
     border-radius: 1rem;
     background-color: var(--color-light);
 }
+
+.groupsMain{
+    display:flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    height:90vh;
+}
+
+.addGroupButton{
+    margin-top: auto;
+}

@@ -1,0 +1,9 @@
+
+.todoItems {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.itemCheckbox{
+    height:90%;
+}

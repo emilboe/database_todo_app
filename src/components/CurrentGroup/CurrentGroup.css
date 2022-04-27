@@ -18,9 +18,12 @@
 }
 
 #groups {
-    background-color: none;
     border: none;
     font-family: var(--headings-font);
     font-size: 1.5rem;
     padding-right: 1rem;
+    appearance:none;
+    background-image: url(./Vector.png);
+    background-repeat: no-repeat;
+    background-position: right;
 }
