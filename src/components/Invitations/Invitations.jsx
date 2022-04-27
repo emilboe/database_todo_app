@@ -25,9 +25,6 @@ export default function Invitations() {
         fetchInvitations(currentUser.email)
     }, [currentUser.email])
 
-    const capitalize = str => {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
     const handleInvite = async (bool, id, groupID, groupName) => {
         if (bool) {
             console.log('accepting', groupID)
