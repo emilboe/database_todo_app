@@ -1,9 +1,15 @@
 
 .todoItems {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 5fr 1fr;
 }
 
 .itemCheckbox{
-    height:90%;
+    height:60%;
+    margin: auto;
+}
+
+.todoItems button{
+    padding:  0.5rem;
+    margin:auto;
 }

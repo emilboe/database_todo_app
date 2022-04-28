@@ -33,9 +33,8 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit })
 
                 <button className='purp' onClick={() => handleEdit(todo, newTitle)}>Save</button> 
             */}
-            {/* <button className='red' onClick={() => handleDelete(todo.id)}>🗑️</button> 
-            Skjuler det her da det skal legges inn sammen med flytt til inventar-knappen. 
-            */}
+             <button className='coral' onClick={() => handleDelete(todo.id)}>Slett</button> 
+
         </div>
     )
 }

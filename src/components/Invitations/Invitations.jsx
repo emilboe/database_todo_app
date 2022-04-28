@@ -61,8 +61,8 @@ export default function Invitations() {
                         <p> {invite.invitedBy}</p>
                         <h2>Invitert til: </h2>
                         <p>{invite.groupName}</p>
-                        <button className="green" onClick={() => handleInvite(true, invite.id, invite.groupID, invite.groupName)}>Godkjenn</button>
-                        <button className="red" onClick={() => handleInvite(false, invite.id, invite.groupID, invite.groupName)}>Avslå</button>
+                        <button className="greenBG" onClick={() => handleInvite(true, invite.id, invite.groupID, invite.groupName)}>Godkjenn</button>
+                        <button className="greenBorder" onClick={() => handleInvite(false, invite.id, invite.groupID, invite.groupName)}>Avslå</button>
                     </div>
                 ))
                 :

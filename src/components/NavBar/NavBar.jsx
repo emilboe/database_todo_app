@@ -3,7 +3,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 import { query, onSnapshot } from 'firebase/firestore';
-import './NavBar.css'
+import './NavBar.css';
+import { Icon } from '@iconify/react';
 
 
 
@@ -52,7 +53,7 @@ export default function NavBar() {
           style={activeTab(location, "/shoplist")}
           exact
         >
-          <span className="icon"><i className="far fa-list-ul"></i></span>
+          <span className="icon, svgIcon"><Icon icon="el:list-alt" /></span>
           <span className="title">Handleliste</span>
         </NavLink>
         <NavLink
@@ -60,7 +61,7 @@ export default function NavBar() {
           style={activeTab(location, "/fridge")}
           exact
         >
-          <span className="icon"><i class="far fa-door-closed"></i></span>
+          <span className="icon, svgIcon"><Icon icon="cil:fridge" /></span>
           <span className="title">Kjøleskap</span>
         </NavLink>
         <NavLink

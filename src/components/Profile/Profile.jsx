@@ -44,15 +44,15 @@ export default function Profile() {
       <h2 className='otoma'>{displayName ? capitalize(displayName) : 'username'}</h2>
 
       <div className='profileOptions'>
-        <Link to="update-profile"><button className="baseWhite">Oppdater Profil</button></Link>
+        <Link to="update-profile"><button className="greenBG">Oppdater Profil</button></Link>
         <Link to="invitations">
-          <button className="baseWhite">
+          <button className="greenBG">
             Invitasjoner
             {invitations[0] && <span className='notification'> {invitations.length}</span>}
           </button></Link>
-        <button className="greenBG logOutButton" onClick={handleLogout}>Logg ut</button>
       </div>
-    </div >
+      <button className="greenBorder logOutButton" onClick={handleLogout}>Logg ut</button>
+    </div>
   )
 
 }

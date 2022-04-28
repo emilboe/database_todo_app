@@ -57,6 +57,7 @@ body {
 section {
     margin: auto;
 }
+
 .button-36:hover {
     box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
     transition-duration: 0.1s;
@@ -70,13 +71,6 @@ section {
     border: var(--color-moss) 3px solid;
     background-color: #ffffff;
     color: var(--color-dark);
-}
-.grassBG {
-    background-color: var(--color-grass);
-}
-
-.green {
-    background-color: linear-gradient(92.88deg, #45b558 9.16%, #43cc61 43.89%, #7cd73f 64.72%);
 }
 
 textarea,

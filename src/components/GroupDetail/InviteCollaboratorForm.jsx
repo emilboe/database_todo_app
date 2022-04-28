@@ -52,7 +52,7 @@ export default function InviteCollaboratorForm(props) {
                 <h1>Inviter bruker</h1>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Epost</label>
+                        <label>E-post:</label>
                         <input
                             type="email"
                             placeholder='ola@nordmann.no'
@@ -63,9 +63,10 @@ export default function InviteCollaboratorForm(props) {
                     <div>{error ? error : ''}</div>
                     <div>{message ? message : ''}</div>
 
-                    <button className="grassBG" type="submit">Legg til</button>
+                    <button className="greenBG" type="submit">Legg til</button>
+                    <button className="greenBorder" onClick={() => props.showForm()}>Avbryt</button>
                 </form>
-                <button onClick={() => props.showForm()}>Avbryt</button>
+                
 
             </div>
         </div>
