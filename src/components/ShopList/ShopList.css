@@ -9,3 +9,8 @@
     margin:20px auto;
     width:100%;
 }
+.centered{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
