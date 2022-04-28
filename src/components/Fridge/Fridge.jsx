@@ -45,7 +45,8 @@ export default function Fridge(props) {
         console.log('sending data to fridge:', groupID)
         await db.collection('groups').doc(groupID).collection('fridge').add({
           title,
-          complete: false
+          complete: false,
+          creationDate: Date.now()
         })
         console.log('data sent')
       }
@@ -73,6 +74,7 @@ export default function Fridge(props) {
             <Todo
               key={todo.id}
               todo={todo}
+              creationDate={todo.creationDate}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
               toggleComplete={toggleComplete}

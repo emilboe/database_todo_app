@@ -51,7 +51,6 @@ export default function NavBar() {
         <NavLink
           to="/shoplist"
           style={activeTab(location, "/shoplist")}
-          exact
         >
           <span className="icon, svgIcon"><Icon icon="el:list-alt" /></span>
           <span className="title">Handleliste</span>
@@ -59,7 +58,6 @@ export default function NavBar() {
         <NavLink
           to="/fridge"
           style={activeTab(location, "/fridge")}
-          exact
         >
           <span className="icon, svgIcon"><Icon icon="cil:fridge" /></span>
           <span className="title">Kjøleskap</span>
@@ -67,7 +65,6 @@ export default function NavBar() {
         <NavLink
           to="/groups"
           style={activeTab(location, "/groups")}
-          exact
         >
           <span className="icon"><i className="far fa-users"></i></span>
           <span className="title">Grupper</span>
@@ -75,7 +72,6 @@ export default function NavBar() {
         <NavLink
           to="/profile"
           style={activeTab(location, "/profile")}
-          exact
         >
           {invitations[0] && <span className='notification'> {invitations.length}</span>}
           <span className="icon"><i className="far fa-user"></i></span>

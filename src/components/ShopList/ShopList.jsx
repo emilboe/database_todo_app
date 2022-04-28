@@ -10,36 +10,48 @@ export default function ShopList(props) {
   const [title, setTitle] = useState('')
   const [prevGroupID, setPrevGroupID] = useState('')
   const [todo, setTodo] = useState([])
-  const [todoChecked, setTodoChecked] = useState(false)
+  const [todoChecked, setTodoChecked] = useState([])
 
   const fetchList = (col) => {
     const q = query(db.collection('groups').doc(col).collection('list'))
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray = []
+      let todosArrayChecked = []
       querySnapshot.forEach((doc) => {
-        todosArray.push({ ...doc.data(), id: doc.id })
+        if (doc.data().completed) todosArrayChecked.push({ ...doc.data(), id: doc.id })
+        else todosArray.push({ ...doc.data(), id: doc.id })
       })
       setTodo(todosArray)
+      setTodoChecked(todosArrayChecked)
     })
     return () => unsub()
   }
-  const moveCheckedToFridge = () => {
-    let tempArray = []
-    todo.forEach((item, i) => {
-      if (item.completed) {
-        tempArray.push(todo.slice(i))
-      }
+
+  const removeCheckedItems = async () => {
+    todoChecked.forEach((item, i) => {
+      handleDelete(item.id)
     })
-    console.log('tempArray', tempArray)
   }
-  const checkIfChecked = () => {
-    todo.forEach((item) => { if (item.completed) setTodoChecked(true) })
-    console.log('todo', todo)
-    console.log('checked')
+  const transferCheckedItems = async () => {
+    todoChecked.forEach((item, i) => {
+      addItemToFridge(item.title)
+      handleDelete(item.id)
+    })
   }
-  useEffect(() => {
-    // checkIfChecked()
-  }, [])
+  const addItemToFridge = async (title) => {
+    try {
+      console.log('sending data to fridge:', groupID)
+      await db.collection('groups').doc(groupID).collection('fridge').add({
+        title,
+        complete: false,
+        creationDate: Date.now()
+      })
+      console.log('data sent')
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
 
   if (groupID !== prevGroupID) {
     fetchList(groupID)
@@ -51,7 +63,7 @@ export default function ShopList(props) {
   }
   const toggleComplete = async (todo) => {
     await updateDoc(doc(db, "groups", groupID, 'list', todo.id), { completed: !todo.completed })
-      // .then(checkIfChecked())
+    // .then(checkIfChecked())
   }
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "groups", groupID, 'list', id))
@@ -89,20 +101,41 @@ export default function ShopList(props) {
           ></input>
         </form>
         {
-          todo[0] ?
+          todo[0] || todoChecked[0] ?
             <>
-              {
-                todo.map(todo => (
-                  <Todo
-                    key={todo.id}
-                    todo={todo}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                    toggleComplete={toggleComplete}
-                  />
-                ))
+              <div className='listUnchecked'>
+                {
+                  todo.map(todo => (
+                    <Todo
+                      key={todo.id}
+                      todo={todo}
+                      handleEdit={handleEdit}
+                      handleDelete={handleDelete}
+                      toggleComplete={toggleComplete}
+                    />
+                  ))
+                }
+              </div>
+              {todoChecked[0] &&
+                <div className='listChecked'>
+                  <h2>i handlekurven:</h2>
+                  {
+                    todoChecked.map(todo => (
+                      <Todo
+                        key={todo.id}
+                        todo={todo}
+                        handleEdit={handleEdit}
+                        handleDelete={handleDelete}
+                        toggleComplete={toggleComplete}
+                      />
+                    ))
+                  }
+                  <div className='options'>
+                    <button className='greenBG' onClick={removeCheckedItems}>Fjern</button>
+                    <button className='greenBorder' onClick={transferCheckedItems}>Overfør til kjøleskap</button>
+                  </div>
+                </div>
               }
-              {/* {todoChecked && <div>hey</div>} */}
             </>
             :
             <div className='centered'>
