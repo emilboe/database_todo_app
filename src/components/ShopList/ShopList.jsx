@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { db } from '../../firebase';
 import Todo from '../TodoItem/TodoItem';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';

@@ -9,6 +9,7 @@
   -webkit-transition: .2s all ease-in-out;
   transition: .2s all ease-in-out;
   color: var(--color-dark);
+  overflow: hidden;
 }
 
 .groupsMain a{
