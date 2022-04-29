@@ -12,8 +12,11 @@ export default function Profile() {
   const navigate = useNavigate()
 
   function handleLogout() {
-    logout()
-    navigate('/login')
+    const result = window.confirm("Sikker på at du vil logge ut?");
+    if (result) {
+      logout()
+      navigate('/login')
+    }
   }
 
   const fetchInvitations = (email) => {

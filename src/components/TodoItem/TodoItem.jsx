@@ -37,7 +37,7 @@ export default function Todo({ todo, creationDate, toggleComplete, handleDelete,
                         }
                     }}
                 />
-                <span className='datediff'>{datediff(creationDate, Date.now())}</span>
+                {/* <span className='datediff'>{datediff(creationDate, Date.now())}</span> */}
             </div>
 
             {/* 
