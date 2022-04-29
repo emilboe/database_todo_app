@@ -118,7 +118,6 @@ export default function ShopList(props) {
               </div>
               {todoChecked[0] &&
                 <div className='listChecked'>
-                  <h2>i handlekurven:</h2>
                   {
                     todoChecked.map(todo => (
                       <Todo
@@ -131,8 +130,8 @@ export default function ShopList(props) {
                     ))
                   }
                   <div className='options'>
-                    <button className='greenBG' onClick={removeCheckedItems}>Fjern</button>
-                    <button className='greenBorder' onClick={transferCheckedItems}>Overfør til kjøleskap</button>
+                    <button className='greenBorder' onClick={removeCheckedItems}>Fjern</button>
+                    <button className='greenBG' onClick={transferCheckedItems}>Overfør til kjøleskap</button>
                   </div>
                 </div>
               }

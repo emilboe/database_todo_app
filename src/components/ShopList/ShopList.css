@@ -28,13 +28,9 @@
     display: grid;
     grid-gap: 10px;
     background-color: rgba(60, 60, 60, 0.06);
-    padding: .5rem;
+    padding-top: .5rem;
     align-self: bottom;
-}
-
-.listChecked h2 {
-    text-align: center;
-    margin: 1rem;
+    width:100%;
 }
 
 .options {
