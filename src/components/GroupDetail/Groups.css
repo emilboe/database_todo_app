@@ -29,12 +29,14 @@
 .groupsMain {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     width: 90%;
-    margin: 0 auto;
-    height: 90vh;
-    margin-bottom: 15rem;
+    margin: 2rem auto 10rem auto;
 }
 
 .addGroupButton {
+    position: fixed;
+    bottom: 5rem;
+    width: 90%;
     margin-top: auto;
 }
