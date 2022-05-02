@@ -16,7 +16,10 @@ import Groups from '../components/Groups/Groups'
 import GroupDetail from '../components/GroupDetail/GroupDetail'
 import Invitations from '../components/Invitations/Invitations'
 import './globals.css'
-import CurrentGroup from './CurrentGroup/CurrentGroup';
+import CurrentGroup from './CurrentGroup/CurrentGroup'; 
+
+import LogRocket from 'logrocket';
+LogRocket.init('b7kfld/hamle');
 
 export default function App() {
 
