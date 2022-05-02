@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
+import { useAuth } from '../../contexts/AuthContext';
 import Todo from '../TodoItem/TodoItem';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import '../ShopList/ShopList.css';
 import hamsterDeco from './questionable.png';
+import LogRocket from 'logrocket';
+
 
 export default function ShopList(props) {
   const { groupID } = props
+  const { currentUser } = useAuth()
   const [title, setTitle] = useState('')
   const [prevGroupID, setPrevGroupID] = useState('')
   const [todo, setTodo] = useState([])
   const [todoChecked, setTodoChecked] = useState([])
+  LogRocket.identify(currentUser.uid, {
+    name: currentUser.displayName,
+    email: currentUser.email
+  });
 
   const fetchList = (col) => {
     const q = query(db.collection('groups').doc(col).collection('list'))
@@ -88,6 +96,7 @@ export default function ShopList(props) {
     }
     else console.log('alert or maybe disable button first?')
   }
+
 
   return (
     <React.Fragment>
