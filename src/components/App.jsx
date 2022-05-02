@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './Signup+Login/Signup';
 import Handleliste from '../components/ShopList/ShopList';
 import Login from './Signup+Login/Login';
+import Privacy from './Signup+Login/Privacy';
+import ForgotPW from './Signup+Login/ForgotPW';
 import Lost from '../components/Lost/Lost';
 import PrivateRoute from './PrivateRoute';
-import ForgotPW from './Signup+Login/ForgotPW';
 import Profile from './Profile/Profile';
 import UpdateProfile from './Profile/UpdateProfile';
 import Fridge from './Fridge/Fridge';
@@ -74,6 +75,7 @@ export default function App() {
                 </PrivateRoute>
               } />
 
+              <Route path="/privacy_policy" element={<Privacy />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPW />} />

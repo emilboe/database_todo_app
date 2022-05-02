@@ -61,6 +61,10 @@ export default function Signup() {
                     <label>Gjenta passord</label><br />
                     <input type="password" ref={passwordConfirmRef} required />
                 </div>
+                <div className='privacy'>
+                    <input type="checkbox" required></input>
+                    <p>Ved å bruke Hamle samtykker du med vår <Link to="/privacy_policy">personvernerklæring.</Link></p>
+                </div>
                 <button className="greenBG" disabled={loading} type="submit">Registrer deg</button>
                 <div>{error ? error : ''}</div>
             </form>

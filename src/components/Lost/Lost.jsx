@@ -6,7 +6,9 @@ export default function Lost() {
   return <div>
     <h1>404</h1>
     <p>seems, like you've made a wrong move...</p>
-    <button onClick={() => {
+    <button 
+    className='greenBorder'
+    onClick={() => {
       navigate(-1)
       console.log('going back?')
     }

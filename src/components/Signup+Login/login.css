@@ -7,14 +7,14 @@
     width: 100vw;
 }
 
-.loginHeader{
+.loginHeader {
     background-image: url('../assets/bakgrunn.svg');
-    height:50vh;
+    height: 50vh;
 }
 
-.registerHeader{
+.registerHeader {
     background-image: url('../assets/bakgrunn_02.svg');
-    height:30vh;
+    height: 30vh;
 }
 
 .registerHeader h1 {
@@ -26,8 +26,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
-    width:100%;
-    display:flex;
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: flex-end;
 }
@@ -36,11 +36,23 @@
 form,
 .inputSection,
 .loginContainer button,
-.signupSection, 
-.signupSection button{
+.signupSection,
+.signupSection button {
     width: 80vW;
 }
 
 .forgotPWSection a {
     color: black;
+}
+
+.privacy {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.privacy input[type='checkbox'] {
+    height: 40px;
+    width: 40px;
+    margin: 10px;
 }
