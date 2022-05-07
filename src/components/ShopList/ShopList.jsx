@@ -148,7 +148,7 @@ export default function ShopList(props) {
             :
             <div className='centered'>
               <img alt="" src={hamsterDeco} />
-              <p>handlelista di er tom...</p>
+              <p>Handlelista di er tom...</p>
             </div>
         }
       </main>
