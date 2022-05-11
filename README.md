@@ -44,7 +44,7 @@ Initialized with our own Firebase + React user login system [boilerplate](https:
 * [React](https://reactjs.org/)
 * [Firebase](https://firebase.google.com/)
 
-Further developed with on several iterations using an agile methodology over several weeks.
+Further developed through several iterations using an agile methodology over several weeks.
 
 <!-- GETTING STARTED -->
 ## Getting Started
