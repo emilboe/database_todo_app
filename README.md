@@ -37,12 +37,14 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 
 ### Built With
 
-Made by building upon my own Firebase + React boilerplate.
+Made with love by [@emilboe](https://github.com/emilboe/) & [@ingunand](https://github.com/ingunand/)
+
+Initialized with our own Firebase + React user login system [boilerplate](https://github.com/emilboe/ReactBaseBoiler).
 
 * [React](https://reactjs.org/)
 * [Firebase](https://firebase.google.com/)
 
-
+Further developed with on several iterations using an agile methodology over several weeks.
 
 <!-- GETTING STARTED -->
 ## Getting Started
