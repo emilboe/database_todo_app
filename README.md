@@ -6,16 +6,9 @@
     <img style="border-radius:20px" src="https://i.imgur.com/arwHDys.png" alt="Logo">
   </a>
 
-  <h3 align="center">Hamle</h3>
+  <h3 align="center">Hamle 2</h3>
 
-  <p align="center">
-    Bachelor group project to reduce food waste.
-    <br />
-    Share shopping lists and inventory management with all your friends and family!
-    <br />
-    <a href="https://hamle.netlify.app/"><strong>App currently hosted on netlify »</strong></a>
-    <br />
-  </p>
+  <p>Further development of our bachelor project!</p>
 </p>
 
 
@@ -37,7 +30,8 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 
 ### Built With
 
-Made with love by [@emilboe](https://github.com/emilboe/) & [@ingunand](https://github.com/ingunand/)
+Hamle is made with love by [@emilboe](https://github.com/emilboe/) & [@ingunand](https://github.com/ingunand/)
+Hamle 2 is a further development of Hamle.
 
 Initialized with our own Firebase + React user login system [boilerplate](https://github.com/emilboe/ReactBaseBoiler).
 

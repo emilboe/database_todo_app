@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
-import Todo from '../TodoItem/TodoItem';
+import Todo from '../TodoItemFridge/TodoItemFridge';
 import { query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import './Fridge.css';
 

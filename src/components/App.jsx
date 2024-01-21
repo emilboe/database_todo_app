@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import Profile from './Profile/Profile';
 import UpdateProfile from './Profile/UpdateProfile';
 import Fridge from './Fridge/Fridge';
+import ToDoList from './ToDoList/ToDoList';
 import NavBar from './NavBar/NavBar';
 import Groups from '../components/Groups/Groups'
 import GroupDetail from '../components/GroupDetail/GroupDetail'
@@ -65,12 +66,22 @@ export default function App() {
                   <NavBar />
                 </PrivateRoute>
               } />
-              <Route exact path='/groups' element={
+              
+              <Route exact path='/profile/groups' element={
                 <PrivateRoute>
                   <Groups />
                   <NavBar />
                 </PrivateRoute>
               } />
+
+             <Route exact path='/todo' element={
+                <PrivateRoute>
+                  <CurrentGroup groupID={groupID} setGroupID={setGroupID} />
+                  <ToDoList groupID={groupID}/>
+                  <NavBar />
+                </PrivateRoute>
+              } />
+              
               <Route path='/groups/:groupID' element={
                 <PrivateRoute>
                   <GroupDetail />

@@ -53,6 +53,7 @@ export default function Profile() {
             Invitasjoner
             {invitations[0] && <span className='notification'> {invitations.length}</span>}
           </button></Link>
+          <Link to="groups"><button className="greenBG">Grupper</button></Link>
       </div>
       <button className="greenBorder logOutButton" onClick={handleLogout}>Logg ut</button>
     </div>

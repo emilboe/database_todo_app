@@ -54,6 +54,6 @@
     ]
   },
   "devDependencies": {
-    "@iconify/react": "^3.2.1"
+    "@iconify/react": "^3.2.2"
   }
 }
