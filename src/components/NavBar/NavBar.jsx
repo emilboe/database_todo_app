@@ -63,11 +63,11 @@ export default function NavBar() {
           <span className="title">Kjøleskap</span>
         </NavLink>
         <NavLink
-          to="/groups"
-          style={activeTab(location, "/groups")}
+          to="/todo"
+          style={activeTab(location, "/todo")}
         >
-          <span className="icon"><i className="far fa-users"></i></span>
-          <span className="title">Grupper</span>
+          <span className="icon, svgIcon"><Icon icon="lucide:list-todo" /></span>
+          <span className="title">To do</span>
         </NavLink>
         <NavLink
           to="/profile"

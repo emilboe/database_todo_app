@@ -1,0 +1,17 @@
+.todoItemFridge {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    align-content: center;
+}
+
+.todoItemFridge button {
+    padding: 0.5rem;
+    margin: auto;
+}
+
+.datediff {
+    border-radius: 15rem;
+    position: relative;
+    text-align: right;
+    margin-left: -2.5rem;
+}
