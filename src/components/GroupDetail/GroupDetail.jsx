@@ -32,7 +32,7 @@ export default function GroupDetail() {
 
             await deleteDoc(doc(db, "groups", id))
             await deleteDoc(doc(db, "userData", currentUser.uid, 'groupAccess', id))
-            navigate('/groups')
+            navigate('profile/groups')
             return;
         }
     };
