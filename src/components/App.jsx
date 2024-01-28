@@ -82,7 +82,7 @@ export default function App() {
                 </PrivateRoute>
               } />
               
-              <Route path='/groups/:groupID' element={
+              <Route path='profile/groups/:groupID' element={
                 <PrivateRoute>
                   <GroupDetail />
                   <NavBar />
